@@ -2,258 +2,242 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>다니엘 금식 기도회</title>
+<title>다니엘 금식 기도회(관리자용)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --olive:#4a5a2a; --olive-light:#6b7f42; --olive-pale:#e8f0d4;
-    --gold:#b8860b; --gold-pale:#fdf3d8; --gold-border:#d4a843;
-    --paper:#faf7f0; --parchment:#f0ead8; --border:#d4c9a8;
-    --muted:#7a6e5a; --ink:#1a1208;
-    --red:#8b2222; --blue:#1a3a8a;
-    --radius:10px;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-  body {
-    background:var(--paper); color:var(--ink);
-    font-family:'Noto Sans KR',sans-serif;
-    min-height:100vh;
-    padding-bottom:env(safe-area-inset-bottom,20px);
-    -webkit-overflow-scrolling:touch;
-    overflow-x:hidden;
-  }
+:root{
+  --olive:#4a5a2a;--olive-light:#6b7f42;--olive-pale:#e8f0d4;
+  --gold:#b8860b;--gold-pale:#fdf3d8;--gold-border:#d4a843;
+  --paper:#faf7f0;--parchment:#f0ead8;--border:#d4c9a8;
+  --muted:#7a6e5a;--ink:#1a1208;
+  --red:#8b2222;--blue:#1a3a8a;
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-serif;
+  min-height:100vh;min-height:-webkit-fill-available;
+  padding-bottom:env(safe-area-inset-bottom,20px);
+  -webkit-overflow-scrolling:touch;overflow-x:hidden;}
 
-  /* ── 헤더 ── */
-  .header {
-    text-align:center; padding:32px 20px 20px;
-    border-bottom:1px solid var(--border);
-  }
-  .header::before {
-    content:'✦'; display:block; font-size:15px;
-    color:var(--gold); margin-bottom:10px; letter-spacing:5px;
-  }
-  .header h1 {
-    font-family:'Noto Serif KR',serif; font-size:17px;
-    font-weight:700; line-height:1.55; margin-bottom:6px;
-  }
-  .header .sub { font-size:13px; color:var(--muted); line-height:1.7; }
-  .intro-box {
-    margin-top:16px; padding:16px 18px;
-    background:rgba(255,255,255,0.6);
-    border:1px solid var(--gold-border);
-    border-radius:var(--radius);
-    text-align:left;
-  }
-  .intro-text {
-    font-size:14px; color:var(--ink); line-height:2.0;
-  }
-  .bible-verse {
-    font-family:'Noto Serif KR',serif;
-    font-size:15px; font-weight:600;
-    color:var(--olive); font-style:normal;
-    display:block; margin:4px 0; padding-left:8px;
-    border-left:3px solid var(--gold);
-  }
-  .intro-box {
-    margin-top:16px; padding:16px 18px;
-    background:rgba(255,255,255,0.6);
-    border:1px solid var(--gold-border);
-    border-radius:var(--radius);
-    text-align:left;
-  }
-  .intro-text {
-    font-size:14px; color:var(--ink); line-height:2.0;
-  }
-  .bible-verse {
-    font-family:'Noto Serif KR',serif;
-    font-size:15px; font-weight:600;
-    color:var(--olive); display:block;
-    margin:4px 0; padding-left:8px;
-    border-left:3px solid var(--gold);
-  }
-  .period-badge {
-    display:inline-block; margin-top:8px; padding:4px 14px;
-    background:var(--gold-pale); border:1px solid var(--gold-border);
-    border-radius:20px; font-size:12px; color:var(--gold); font-weight:500;
-  }
+/* 헤더 */
+.header{text-align:center;padding:24px 20px 16px;border-bottom:1px solid var(--border);}
+.header::before{content:'✦';display:block;font-size:14px;color:var(--gold);margin-bottom:8px;letter-spacing:5px;}
+.header h1{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;line-height:1.55;margin-bottom:4px;}
+.header .sub{font-size:13px;color:var(--muted);}
+.period-badge{display:inline-block;margin-top:7px;padding:3px 12px;
+  background:var(--gold-pale);border:1px solid var(--gold-border);
+  border-radius:20px;font-size:11px;color:var(--gold);font-weight:500;}
 
-  /* ── 입력 ── */
-  .input-section {
-    padding:14px 16px; background:var(--parchment);
-    border-bottom:1px solid var(--border);
-  }
-  .input-row { display:flex; gap:10px; }
-  .input-group { flex:1; display:flex; flex-direction:column; gap:4px; }
-  .input-group label { font-size:14px; font-weight:500; color:var(--muted); }
-  .input-group input,
-  .input-group select {
-    width:100%; padding:12px; border:1.5px solid var(--border);
-    border-radius:var(--radius); font-family:'Noto Sans KR',sans-serif;
-    font-size:16px; background:white; color:var(--ink);
-    outline:none; -webkit-appearance:none; appearance:none;
-  }
-  .input-group input:focus,
-  .input-group select:focus { border-color:var(--olive-light); }
-  .input-group input.error,
-  .input-group select.error { border-color:#c0392b; }
-  .select-wrap { position:relative; }
-  .select-wrap::after {
-    content:'▾'; position:absolute; right:12px; top:50%;
-    transform:translateY(-50%); color:var(--muted);
-    pointer-events:none; font-size:14px;
-  }
-  .select-wrap select { padding-right:34px; }
+/* 내 정보 등록 바 */
+.user-bar{display:flex;gap:8px;align-items:center;padding:10px 12px;
+  background:var(--gold-pale);border-bottom:2px solid var(--gold-border);}
+.user-bar input{flex:1;min-width:80px;padding:9px 11px;border:1.5px solid var(--gold-border);
+  border-radius:var(--radius);font-family:'Noto Sans KR',sans-serif;font-size:14px;
+  color:var(--ink);outline:none;background:white;-webkit-appearance:none;height:40px;}
+.user-bar input:focus{border-color:var(--olive);}
+.user-sel-wrap{position:relative;flex:1.4;}
+.user-sel-wrap::after{content:'▾';position:absolute;right:9px;top:50%;
+  transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:12px;}
+.user-sel-wrap select{width:100%;padding:9px 26px 9px 10px;border:1.5px solid var(--gold-border);
+  border-radius:var(--radius);font-family:'Noto Sans KR',sans-serif;font-size:14px;
+  color:var(--ink);background:white;outline:none;-webkit-appearance:none;appearance:none;height:40px;}
+.user-sel-wrap select:focus{border-color:var(--olive);}
+.user-badge{font-size:12px;font-weight:600;color:var(--olive);
+  background:var(--olive-pale);border:1px solid var(--olive);
+  border-radius:20px;padding:4px 10px;white-space:nowrap;flex-shrink:0;}
 
-  /* ── 주차 블록 ── */
-  .schedule-wrap { padding:0 12px; }
-  .week-block { margin:16px 0; }
-  .week-title {
-    font-size:12px; font-weight:600; color:var(--muted);
-    letter-spacing:0.05em; padding-bottom:8px;
-    border-bottom:1px solid var(--border); margin-bottom:8px;
-  }
+/* 안내 문구 */
+.user-guide{padding:7px 14px;font-size:12px;color:var(--muted);
+  background:var(--paper);border-bottom:1px solid var(--border);}
+.user-guide.hidden{display:none;}
 
-  /* ── 그리드 ── */
-  .grid-table { width:100%; border-collapse:collapse; table-layout:fixed; }
-  .grid-table th {
-    font-size:12px; font-weight:500; color:var(--muted);
-    text-align:center; padding:6px 2px;
-    border:1px solid var(--border); background:var(--parchment);
-    line-height:1.4; white-space:pre-line;
-  }
-  .grid-table th.sunday  { color:var(--red);  background:#fdf0f0; }
-  .grid-table th.saturday{ color:var(--blue); background:#f0f4fd; }
-  .lbl-col { width:36px; }
-  .grid-table td.meal-label {
-    font-size:12px; color:var(--muted); text-align:center;
-    padding:0; border:none; background:transparent;
-    vertical-align:middle; line-height:1.3; white-space:pre-line;
-  }
-  .grid-table td.slot {
-    border:1px solid var(--border); text-align:center;
-    padding:0; height:48px; cursor:pointer; background:#e8e8e8;
-    transition:background 0.1s;
-    touch-action:manipulation;
-    -webkit-user-select:none; user-select:none;
-  }
-  .grid-table td.slot.has-applicant {
-    background:white;
-  }
-  .grid-table td.slot:active { background:#f0f5e8; }
-  .grid-table td.slot.selected {
-    background:var(--olive-pale);
-  }
-  .slot-inner {
-    width:100%; height:100%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:20px; color:var(--olive); pointer-events:none;
-  }
+/* 필터 바 */
+.filter-bar{position:-webkit-sticky;position:sticky;top:0;z-index:50;background:var(--parchment);
+  border-bottom:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;align-items:stretch;}
+.filter-group{position:relative;flex:1;min-width:90px;display:flex;}
+.filter-group::after{content:'▾';position:absolute;right:9px;top:50%;
+  transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:11px;}
+.filter-select{width:100%;padding:9px 26px 9px 10px;border:1.5px solid var(--border);
+  border-radius:var(--radius);font-family:'Noto Sans KR',sans-serif;font-size:13px;
+  color:var(--ink);background:white;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;height:40px;}
+.filter-select:focus{border-color:var(--olive-light);}
+/* 태그 검색 */
+.tag-search-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:5px;
+  flex:3;min-width:160px;padding:6px 10px;border:1.5px solid var(--border);
+  border-radius:var(--radius);background:white;cursor:text;min-height:40px;}
+.tag-search-wrap:focus-within{border-color:var(--olive-light);}
+.tag-list{display:flex;flex-wrap:wrap;gap:4px;}
+.tag-item{display:flex;align-items:center;gap:3px;padding:2px 8px;
+  background:var(--olive-pale);border:1px solid var(--olive);border-radius:20px;
+  font-size:12px;color:var(--olive);font-weight:500;white-space:nowrap;}
+.tag-item button{background:none;border:none;cursor:pointer;color:var(--olive);
+  font-size:13px;padding:0;line-height:1;margin-left:1px;}
+.tag-input{border:none;outline:none;font-family:'Noto Sans KR',sans-serif;
+  font-size:16px;color:var(--ink);min-width:80px;flex:1;padding:1px 0;}
+.tag-clear-btn{padding:4px 9px;border-radius:20px;background:none;
+  border:1px solid var(--border);font-family:'Noto Sans KR',sans-serif;
+  font-size:11px;color:var(--muted);cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.tag-clear-btn:active{background:var(--parchment);}
+.tag-add-btn{padding:4px 10px;border-radius:20px;background:var(--olive);color:white;
+  border:none;font-size:15px;font-weight:700;cursor:pointer;flex-shrink:0;line-height:1;}
 
-  /* ── 선택 현황 ── */
-  .summary {
-    margin:12px; padding:14px 16px;
-    background:var(--parchment); border:1px solid var(--border);
-    border-radius:var(--radius);
-  }
-  .summary-title { font-size:15px; font-weight:500; color:var(--ink); margin-bottom:10px; }
-  .summary-counts { display:flex; }
-  .count-item { flex:1; text-align:center; }
-  .count-item + .count-item { border-left:1px solid var(--border); }
-  .count-num {
-    font-family:'Noto Serif KR',serif; font-size:28px;
-    font-weight:700; color:var(--olive); line-height:1;
-  }
-  .count-label { font-size:13px; color:var(--muted); margin-top:3px; }
+.filter-name{flex:2;min-width:100px;padding:9px 12px;border:1.5px solid var(--border);
+  border-radius:var(--radius);font-family:'Noto Sans KR',sans-serif;font-size:13px;
+  color:var(--ink);outline:none;-webkit-appearance:none;background:white;}
+.filter-name:focus{border-color:var(--olive-light);}
+.btn-refresh{padding:9px 13px;border-radius:var(--radius);background:var(--olive);color:white;
+  border:none;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:500;
+  cursor:pointer;white-space:nowrap;touch-action:manipulation;flex-shrink:0;height:40px;}
+.btn-refresh:active{background:var(--olive-light);}
+.btn-send{padding:7px 13px;border-radius:var(--radius);background:var(--gold);color:white;
+  border:none;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:600;
+  cursor:pointer;white-space:nowrap;touch-action:manipulation;flex-shrink:0;
+  animation:pulse 1.5s infinite;}
+.btn-send:active{background:#9a7209;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.75;}}
 
-  /* ── 범례 ── */
-  .legend-bar {
-    display:flex; gap:14px; align-items:center;
-    padding:8px 14px; margin:8px 12px 0;
-    background:var(--parchment); border:1px solid var(--border);
-    border-radius:var(--radius); flex-wrap:wrap;
-  }
-  .legend-item { display:flex; align-items:center; gap:6px; }
-  .legend-item span { font-size:12px; color:var(--muted); }
-  .legend-box {
-    width:22px; height:22px; border:1px solid var(--border);
-    border-radius:4px; display:flex; align-items:center; justify-content:center;
-    font-size:13px; flex-shrink:0;
-  }
-  .legend-empty { background:#e8e8e8; }
-  .legend-has   { background:white; }
-  .legend-mine  { background:var(--olive); color:white; font-weight:600; }
+/* 그리드 안내 */
+.grid-guide{padding:7px 14px;font-size:12px;color:var(--muted);
+  background:var(--parchment);border-bottom:1px solid var(--border);}
 
-  /* ── 불러오기 버튼 ── */
-  .load-row {
-    display:flex; gap:8px; margin-top:10px;
-  }
-  .btn-load {
-    flex:1; padding:11px 14px; border-radius:var(--radius);
-    font-family:'Noto Sans KR',sans-serif; font-size:14px; font-weight:500;
-    cursor:pointer; border:1.5px solid var(--gold-border);
-    background:var(--gold-pale); color:var(--gold);
-    min-height:44px; transition:background 0.1s;
-    -webkit-appearance:none; touch-action:manipulation;
-  }
-  .btn-load:active { background:#f5e4a0; }
-  .load-status {
-    font-size:12px; color:var(--muted); margin-top:6px;
-    min-height:18px; text-align:center;
-  }
-  .load-status.ok    { color:var(--olive); }
-  .load-status.error { color:#c0392b; }
+/* 그리드 섹션 */
+.grid-section{padding:10px 10px 0;}
+.week-block{margin-bottom:16px;}
+.week-title{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0.05em;
+  padding:5px 2px 6px;border-bottom:1px solid var(--border);margin-bottom:6px;}
 
-  /* ── 버튼 ── */
-  .actions { display:flex; gap:10px; padding:0 12px 16px; }
-  .btn {
-    padding:14px 18px; border-radius:var(--radius);
-    font-family:'Noto Sans KR',sans-serif; font-size:15px;
-    font-weight:500; cursor:pointer;
-    border:1.5px solid var(--border); background:white; color:var(--ink);
-    min-height:50px; transition:background 0.1s;
-    -webkit-appearance:none; touch-action:manipulation;
-  }
-  .btn:active { background:var(--parchment); }
-  .btn-primary {
-    flex:1; background:var(--olive);
-    border-color:var(--olive); color:white;
-  }
-  .btn-primary:active  { background:var(--olive-light); }
-  .btn-primary:disabled{ background:var(--border); border-color:var(--border); }
+/* 집계 그리드 */
+.agg-table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.agg-table th{font-size:10px;font-weight:500;color:var(--muted);text-align:center;
+  padding:4px 1px;border:1px solid var(--border);background:var(--parchment);
+  line-height:1.4;white-space:pre-line;}
+.agg-table th.sunday{color:var(--red);background:#fdf0f0;}
+.agg-table th.saturday{color:var(--blue);background:#f0f4fd;}
+.agg-table th.lbl-col{width:30px;}
+.agg-table td.meal-lbl{font-size:10px;color:var(--muted);text-align:center;
+  padding:0;border:1px solid var(--border);background:var(--parchment);vertical-align:middle;
+  line-height:1.3;white-space:pre-line;width:30px;}
 
-  /* ── 토스트 ── */
-  .toast {
-    position:fixed;
-    bottom:calc(20px + env(safe-area-inset-bottom,0px));
-    left:50%; transform:translateX(-50%) translateY(80px);
-    background:var(--ink); color:white;
-    padding:12px 22px; border-radius:30px; font-size:14px;
-    transition:transform 0.25s ease; z-index:999;
-    white-space:nowrap; pointer-events:none;
-    max-width:92vw; text-align:center;
-  }
-  .toast.show   { transform:translateX(-50%) translateY(0); }
-  .toast.success{ background:var(--olive); }
-  .toast.error  { background:#8b2222; }
+/* 셀 */
+.agg-table td.cell{border:1px solid var(--border);text-align:center;padding:2px 1px;
+  min-height:44px;vertical-align:top;cursor:pointer;background:white;
+  transition:background 0.1s;touch-action:manipulation;position:relative;}
+.agg-table td.cell:active{background:#f0f5e8;}
+.agg-table td.cell.has-names{background:var(--olive-pale);}
+.agg-table td.cell.has-names:hover{background:#d2e8b0;}
+.agg-table td.cell.zero:hover{background:#f5f5f5;}
+.agg-table td.cell.filtered-out{opacity:0.25;pointer-events:none;}
+.cell-dot{color:#ccc;font-size:14px;line-height:42px;}
+.cell-names{display:flex;flex-direction:column;gap:1px;padding:2px 1px;}
+.name-chip{font-size:9px;font-weight:600;color:var(--olive);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:white;border-radius:3px;padding:1px 2px;line-height:1.4;}
+.name-chip.dim{color:#aaa;font-weight:400;}
+.name-chip.match{color:var(--olive);font-weight:700;background:var(--gold-pale);}
 
-  /* ── 로딩 ── */
-  .loading-overlay {
-    display:none; position:fixed; inset:0;
-    background:rgba(250,247,240,0.9); z-index:100;
-    align-items:center; justify-content:center;
-    flex-direction:column; gap:14px;
-  }
-  .loading-overlay.show { display:flex; }
-  .spinner {
-    width:36px; height:36px;
-    border:3px solid var(--border); border-top-color:var(--olive);
-    border-radius:50%; animation:spin 0.8s linear infinite;
-  }
-  @keyframes spin { to { transform:rotate(360deg); } }
+/* 반별 칩 색상 */
+.name-chip.cls-수주반  {background:#dbeafe;}
+.name-chip.cls-분주반  {background:#fce7f3;}
+.name-chip.cls-화요반  {background:#d1fae5;}
+.name-chip.cls-교역자  {background:#ede9fe;}
+.name-chip.cls-기도후원자{background:#ffedd5;}
+
+/* 셀 팝업 */
+.cell-modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);
+  z-index:400;align-items:flex-end;justify-content:center;}
+.cell-modal-overlay.show{display:flex;}
+.cell-modal{background:white;border-radius:16px 16px 0 0;
+  padding:20px 18px calc(28px + env(safe-area-inset-bottom, 0px));
+  width:100%;max-width:480px;max-height:82vh;display:flex;flex-direction:column;
+  box-shadow:0 -4px 24px rgba(0,0,0,0.15);
+  -webkit-overflow-scrolling:touch;}
+.cell-modal-title{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700;
+  color:var(--ink);margin-bottom:3px;}
+.cell-modal-sub{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.cell-modal-list{overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+
+/* 신규 추가 영역 */
+.add-new-row{display:flex;gap:8px;padding:10px 0 4px;border-top:1px solid var(--border);margin-top:6px;}
+.add-new-row input,.add-new-row select{flex:1;padding:9px 10px;border:1.5px solid var(--border);
+  border-radius:var(--radius);font-family:'Noto Sans KR',sans-serif;font-size:16px;
+  color:var(--ink);outline:none;background:white;-webkit-appearance:none;appearance:none;}
+.add-new-row input:focus,.add-new-row select:focus{border-color:var(--olive-light);}
+.select-wrap-sm{position:relative;flex:1;}
+.select-wrap-sm::after{content:'▾';position:absolute;right:8px;top:50%;
+  transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:11px;}
+.select-wrap-sm select{width:100%;padding-right:24px;}
+.btn-add{padding:9px 14px;border-radius:var(--radius);background:var(--gold);color:white;
+  border:none;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:500;
+  cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.btn-add:active{background:#9a7209;}
+
+/* 체크 아이템 */
+.cell-check-item{display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border:1.5px solid var(--border);border-radius:var(--radius);cursor:pointer;
+  background:white;transition:background 0.1s;-webkit-user-select:none;user-select:none;}
+.cell-check-item.checked{background:var(--olive-pale);border-color:var(--olive);}
+.cell-check-item.checked .cell-check-name{color:var(--olive);font-weight:600;}
+.cell-check-box{width:20px;height:20px;border:2px solid var(--border);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;
+  background:white;transition:all 0.1s;}
+.cell-check-item.checked .cell-check-box{background:var(--olive);border-color:var(--olive);color:white;}
+.cell-check-item.readonly{cursor:default;opacity:0.6;}
+.cell-check-item.readonly .cell-check-box{background:#f5f5f5;border-color:#ddd;}
+.cell-check-name{font-size:13px;color:var(--ink);flex:1;}
+.cell-check-class{font-size:11px;color:var(--muted);}
+.cell-modal-btns{display:flex;gap:8px;}
+.cell-modal-btns .btn{flex:1;min-height:46px;font-size:14px;}
+
+/* 공통 버튼 */
+.btn{padding:13px 16px;border-radius:var(--radius);font-family:'Noto Sans KR',sans-serif;
+  font-size:14px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);
+  background:white;color:var(--ink);min-height:48px;transition:background 0.1s;
+  -webkit-appearance:none;touch-action:manipulation;}
+.btn:active{background:var(--parchment);}
+.btn-primary{background:var(--olive);border-color:var(--olive);color:white;}
+.btn-primary:active{background:var(--olive-light);}
+.btn-primary:disabled{background:var(--border);border-color:var(--border);color:#999;}
+
+/* 토스트 */
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:white;
+  padding:11px 22px;border-radius:30px;font-size:14px;transition:transform 0.25s ease;
+  z-index:9999;white-space:nowrap;pointer-events:none;max-width:92vw;text-align:center;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.success{background:var(--olive);}
+.toast.error{background:#8b2222;}
+
+/* 로딩 */
+.loading-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(250,247,240,0.9);
+  z-index:200;align-items:center;justify-content:center;flex-direction:column;gap:13px;}
+.loading-overlay.show{display:flex;}
+.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--olive);
+  border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* 상태바 */
+.status-bar{display:flex;align-items:center;justify-content:space-between;
+  padding:7px 14px;background:var(--paper);border-bottom:1px solid var(--border);}
+.status-count{font-size:12px;color:var(--muted);}
+
+/* 토글 스위치 */
+.toggle-wrap{display:flex;align-items:center;gap:7px;cursor:pointer;user-select:none;}
+.toggle-label{font-size:12px;color:var(--muted);}
+.toggle-track{width:40px;height:22px;border-radius:11px;background:var(--border);
+  position:relative;transition:background 0.2s;flex-shrink:0;}
+.toggle-track.on{background:var(--olive);}
+.toggle-thumb{width:18px;height:18px;border-radius:50%;background:white;
+  position:absolute;top:2px;left:2px;transition:left 0.2s;
+  box-shadow:0 1px 3px rgba(0,0,0,0.2);}
+.toggle-track.on .toggle-thumb{left:20px;}
+
+.empty-state{text-align:center;padding:44px 20px;color:var(--muted);}
+.empty-state .empty-icon{font-size:36px;margin-bottom:10px;}
+.empty-state p{font-size:13px;line-height:1.8;}
 </style>
 </head>
 <body>
@@ -262,31 +246,103 @@
   <h1>제 349회 국제전도폭발<br>한국지도자 임상훈련</h1>
   <p class="sub">2026.06.08 ~ 06.12</p>
   <span class="period-badge">다니엘 금식 기도 기간 : 5/17~6/6</span>
-  <div class="intro-box">
-    <p class="intro-text">
-      지구촌교회에서 열리는 전도폭발 지도자 임상훈련을 위해 금식 기도회를 진행하고자 합니다.<br>
-      
-      <span class="bible-verse">"다니엘이 세 이레 동안 절제하며 하나님 앞에 기도하니라."         - 다니엘서 10장 2–3절 -</span><br>
-      말씀과 같이 하나님 앞에 마음을 낮추고 함께 기도하기를 소망합니다.<br>
-      아래 일정 중 금식 기도가 가능하신 날짜를 선택하시고,<br>
-      '구글시트에 제출하기'을 눌러 주시면 감사하겠습니다.
-    </p>
-  </div>
 </header>
 
-<div class="input-section">
-  <div class="input-row">
-    <div class="input-group">
-      <label>이름 <span style="color:#c0392b">*</span></label>
-      <input type="text" id="nameInput" placeholder="성함"
-        maxlength="20" autocomplete="off"
-        autocorrect="off" autocapitalize="none" spellcheck="false"/>
-    </div>
-    <div class="input-group">
-      <label>반명 <span style="color:#c0392b">*</span></label>
-      <div class="select-wrap">
-        <select id="classInput">
-          <option value="">-- 선택 --</option>
+<!-- 내 정보 등록 -->
+<div class="user-bar">
+  <input type="text" id="myName" placeholder="이름" maxlength="20"
+    autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+    oninput="onMyInfoChange()"/>
+  <div class="user-sel-wrap">
+    <select id="myClass" onchange="onMyInfoChange()">
+      <option value="">반 선택</option>
+      <option value="수주반">수주반</option>
+      <option value="분주반">분주반</option>
+      <option value="화요반">화요반</option>
+      <option value="교역자">교역자</option>
+      <option value="기도후원자(OB)">기도후원자(OB)</option>
+    </select>
+  </div>
+  <span class="user-badge" id="myBadge" style="display:none;"></span>
+</div>
+<div class="user-guide" id="userGuide">
+  📌 이름과 반명을 입력하면 신청 및 수정이 가능합니다.
+</div>
+
+<!-- 필터 바 (sticky) -->
+<div class="filter-bar">
+  <!-- 태그 검색창 -->
+  <div class="tag-search-wrap" id="tagSearchWrap">
+    <div class="tag-list" id="tagList"></div>
+    <input class="tag-input" id="filterName" placeholder="이름 입력 후 + 버튼"
+      maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"/>
+    <button class="tag-add-btn" onclick="addTagFromInput()">+</button>
+    <button class="tag-clear-btn" id="tagClearBtn" onclick="clearAllTags()" style="display:none;">초기화</button>
+  </div>
+  <div class="filter-group">
+    <select class="filter-select" id="filterClass" onchange="applyFilter()">
+      <option value="">전체 반</option>
+      <option value="수주반">수주반</option>
+      <option value="분주반">분주반</option>
+      <option value="화요반">화요반</option>
+      <option value="교역자">교역자</option>
+      <option value="기도후원자(OB)">기도후원자(OB)</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <select class="filter-select" id="filterWeek" onchange="applyFilter()">
+      <option value="">전체 주차</option>
+      <option value="0">1주차</option>
+      <option value="1">2주차</option>
+      <option value="2">3주차</option>
+    </select>
+  </div>
+</div>
+
+<!-- 상태 표시 -->
+<div class="status-bar">
+  <div style="display:flex;gap:12px;align-items:center;">
+    <label class="toggle-wrap">
+      <span class="toggle-label">반별 색상</span>
+      <div class="toggle-track" id="classColorToggle" onclick="toggleClassColor()">
+        <div class="toggle-thumb"></div>
+      </div>
+    </label>
+    <label class="toggle-wrap">
+      <span class="toggle-label">조회 이름만 보기</span>
+      <div class="toggle-track" id="hideEmptyToggle" onclick="toggleHideEmpty()">
+        <div class="toggle-thumb"></div>
+      </div>
+    </label>
+    <button class="btn-refresh" onclick="loadData(true)">🔄</button>
+    <button class="btn-send" id="sendBtn" onclick="sendToSheet()" style="display:none;">보내기</button>
+  </div>
+</div>
+
+<!-- 그리드 안내 문구 -->
+<div class="grid-guide">
+  <span id="statusCount">로딩 중...</span>
+  &nbsp;·&nbsp;
+  📝 삽입·수정·삭제 작업 완료 후 "<b>보내기</b>"를 눌러 주세요.
+</div>
+
+<!-- 그리드 영역 -->
+<div class="grid-section" id="gridSection"></div>
+
+<!-- 셀 클릭 팝업 -->
+<div class="cell-modal-overlay" id="cellModal" onclick="onModalBg(event)">
+  <div class="cell-modal">
+    <div class="cell-modal-title" id="cellModalTitle"></div>
+    <div class="cell-modal-sub" id="cellModalSub">이름을 체크/해제하여 수정하세요</div>
+    <div class="cell-modal-list" id="cellModalList"></div>
+
+    <!-- 신규 추가 -->
+    <div class="add-new-row">
+      <input type="text" id="addName" placeholder="이름" maxlength="20"
+        autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"/>
+      <div class="select-wrap-sm">
+        <select id="addClass">
+          <option value="">반 선택</option>
           <option value="수주반">수주반</option>
           <option value="분주반">분주반</option>
           <option value="화요반">화요반</option>
@@ -294,140 +350,363 @@
           <option value="기도후원자(OB)">기도후원자(OB)</option>
         </select>
       </div>
+      <button class="btn-add" onclick="addNewPerson()">추가</button>
     </div>
-  </div>
-  <!-- 불러오기 -->
-  <div class="load-row">
-    <button class="btn-load" onclick="loadMyData()">📥 내 신청 내역 불러오기</button>
-  </div>
-  <div class="load-status" id="loadStatus"></div>
-</div>
 
-
-<!-- 범례 -->
-<div class="legend-bar">
-  <div class="legend-item">
-    <div class="legend-box legend-empty"></div>
-    <span>미신청</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-box legend-has"></div>
-    <span>신청완</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-box legend-mine">&#10004;</div>
-    <span>내 선택</span>
-  </div>
-</div>
-<div class="schedule-wrap" id="scheduleArea"></div>
-
-<div class="summary">
-  <p class="summary-title">선택 현황</p>
-  <div class="summary-counts">
-    <div class="count-item">
-      <div class="count-num" id="cTotal">0</div>
-      <div class="count-label">총 선택</div>
-    </div>
-    <div class="count-item">
-      <div class="count-num" id="cMorning">0</div>
-      <div class="count-label">아  침</div>
-    </div>
-    <div class="count-item">
-      <div class="count-num" id="cLunch">0</div>
-      <div class="count-label">점  심</div>
-    </div>
-    <div class="count-item">
-      <div class="count-num" id="cEvening">0</div>
-      <div class="count-label">저  녁</div>
+    <div class="cell-modal-btns">
+      <button class="btn" onclick="closeCellModal()">취소</button>
+      <button class="btn btn-primary" id="cellModalSaveBtn" onclick="saveCellModal()">저장</button>
     </div>
   </div>
-</div>
-
-<div class="actions">
-  <button class="btn" onclick="clearAll()">초기화</button>
-  <button class="btn btn-primary" id="submitBtn" onclick="submitToSheet()">
-    구글 시트에 제출하기
-  </button>
 </div>
 
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
-  <p style="font-size:13px;color:var(--muted)" id="loadingMsg">처리 중...</p>
+  <p style="font-size:13px;color:var(--muted)" id="loadingMsg">로딩 중...</p>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-// =============================================
-// ★ 여기에 Apps Script 배포 URL을 입력하세요 ★
-// =============================================
+// ============================================================
+// ★ Apps Script 배포 URL
+// ============================================================
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzOsARBsG5bmL7pvTNN6WMH1JFEq9Jy9_nAqlcbj3w55PPyCXmWpGr3NKJTnGiqbYcPhw/exec";
-// =============================================
+// ============================================================
+
+// ============================================================
+// ★ 시트 이름 목록 (구글시트 탭 순서와 일치하게 설정)
+//    순서: 수주반, 분주반, 화요반, 교역자, 기도후원자(OB), LOGFILE
+// ============================================================
+const SHEET_NAMES = ["수주반", "분주반", "화요반", "교역자", "기도후원자(OB)", "LOGFILE"];
 
 const WEEKS = [
   { label:"1주차 (5/17 ~ 5/23)", dates:[
-    {label:"5/17\n주일", key:"0517", type:"sunday"},
-    {label:"5/18\n월",   key:"0518"},
-    {label:"5/19\n화",   key:"0519"},
-    {label:"5/20\n수",   key:"0520"},
-    {label:"5/21\n목",   key:"0521"},
-    {label:"5/22\n금",   key:"0522"},
-    {label:"5/23\n토",   key:"0523", type:"saturday"},
+    {label:"5/17\n주일",key:"0517",type:"sunday"},
+    {label:"5/18\n월",key:"0518"},{label:"5/19\n화",key:"0519"},
+    {label:"5/20\n수",key:"0520"},{label:"5/21\n목",key:"0521"},
+    {label:"5/22\n금",key:"0522"},{label:"5/23\n토",key:"0523",type:"saturday"},
   ]},
   { label:"2주차 (5/24 ~ 5/30)", dates:[
-    {label:"5/24\n주일", key:"0524", type:"sunday"},
-    {label:"5/25\n월",   key:"0525"},
-    {label:"5/26\n화",   key:"0526"},
-    {label:"5/27\n수",   key:"0527"},
-    {label:"5/28\n목",   key:"0528"},
-    {label:"5/29\n금",   key:"0529"},
-    {label:"5/30\n토",   key:"0530", type:"saturday"},
+    {label:"5/24\n주일",key:"0524",type:"sunday"},
+    {label:"5/25\n월",key:"0525"},{label:"5/26\n화",key:"0526"},
+    {label:"5/27\n수",key:"0527"},{label:"5/28\n목",key:"0528"},
+    {label:"5/29\n금",key:"0529"},{label:"5/30\n토",key:"0530",type:"saturday"},
   ]},
   { label:"3주차 (5/31 ~ 6/6)", dates:[
-    {label:"5/31\n주일", key:"0531", type:"sunday"},
-    {label:"6/1\n월",    key:"0601"},
-    {label:"6/2\n화",    key:"0602"},
-    {label:"6/3\n수",    key:"0603"},
-    {label:"6/4\n목",    key:"0604"},
-    {label:"6/5\n금",    key:"0605"},
-    {label:"6/6\n토",    key:"0606", type:"saturday"},
+    {label:"5/31\n주일",key:"0531",type:"sunday"},
+    {label:"6/1\n월",key:"0601"},{label:"6/2\n화",key:"0602"},
+    {label:"6/3\n수",key:"0603"},{label:"6/4\n목",key:"0604"},
+    {label:"6/5\n금",key:"0605"},{label:"6/6\n토",key:"0606",type:"saturday"},
   ]},
 ];
-
 const MEALS = [
-  {key:"morning", label:"아\n침"},
-  {key:"lunch",   label:"점\n심"},
-  {key:"evening", label:"저\n녁"},
+  {key:"morning", label:"아\n침", short:"아침"},
+  {key:"lunch",   label:"점\n심", short:"점심"},
+  {key:"evening", label:"저\n녁", short:"저녁"},
 ];
+const ALL_DATES = WEEKS.flatMap(w=>w.dates);
 
-const sel = {};
-let sheetData = {}; // 구글시트 전체 신청 현황 { "0517_morning": 2, ... }
+// 전체 수정/삭제/추가 권한자 목록
+const ADMIN_LIST = new Set([
+  "유연희 (화요반)",
+  "전태룡 (수주반)",
+  "이지혜 (수주반)",
+  "최정희 (화요반)",
+  "조호점 (분주반)",
+  "이운학 (분주반)",
+  "유대연 (교역자)",
+  "김찬영 (교역자)",  
+]);
 
-// 페이지 로드 시 구글시트 신청 현황 미리 가져오기
-async function loadSheetCounts() {
-  try {
-    const url = SCRIPT_URL + "?action=read&t=" + Date.now();
-    const res  = await fetch(url, { method:"GET", redirect:"follow" });
-    const data = await res.json();
-    if (data.status !== "ok") return;
+// ============================================================
+// ★ index_old.html 저장 양식에 맞는 데이터 변환 함수
+//
+//   구글시트 저장 형식 (index_old 기준):
+//   열 순서 → [이름(반명포함), 타임스탬프, 0517_morning, 0517_lunch, ... 0606_evening]
+//   값: "O" 또는 "" (빈문자열)
+//   시트: 반별로 분리 저장 (수주반, 분주반, 화요반, 교역자, 기도후원자(OB))
+//         + LOGFILE 시트에 전체 이력 기록
+// ============================================================
 
-    // 각 슬롯별 신청자 수 집계
-    sheetData = {};
-    (data.rows || []).forEach(row => {
-      Object.entries(row.selections || {}).forEach(([key, val]) => {
-        if (val === "O") sheetData[key] = (sheetData[key] || 0) + 1;
-      });
-    });
-    buildSchedule(); // 신청 현황 반영하여 다시 그리기
-  } catch(e) {
-    // 실패해도 그리드는 그냥 표시
+/** 전송 payload 생성 — index_old 양식과 동일 */
+function buildPayload(row) {
+  // row.name 예: "홍길동 (수주반)"
+  const selections = {};
+  ALL_DATES.forEach(d => MEALS.forEach(m => {
+    const k = d.key + "_" + m.key;
+    selections[k] = (row.selections && row.selections[k] === "O") ? "O" : "";
+  }));
+
+  return {
+    name:      row.name,                        // "홍길동 (수주반)"
+    timestamp: row.timestamp || getTimestamp(), // 타임스탬프
+    selections                                  // { 0517_morning:"O", ... }
+  };
+}
+
+/** row.name 에서 반명 추출 */
+function getClassName(fullName) {
+  const m = fullName.match(/\(([^)]+)\)/);
+  return m ? m[1] : "";
+}
+
+// 데이터 캐시
+let cachedRows = [];
+let originalRows = {}; // fullName → 원본 selections 스냅샷 (JSON string)
+let dirtyRows = new Set();
+
+let hideEmpty = false;
+let classColor = false;
+
+/* 반별 색상 */
+const CLASS_COLOR_MAP = {
+  "수주반":         "cls-수주반",
+  "분주반":         "cls-분주반",
+  "화요반":         "cls-화요반",
+  "교역자":         "cls-교역자",
+  "기도후원자(OB)": "cls-기도후원자",
+};
+function getClassColorCls(fullName){
+  const cls = (fullName.match(/\(([^)]+)\)/)||[])[1]||"";
+  return CLASS_COLOR_MAP[cls]||"";
+}
+
+function toggleClassColor(){
+  classColor = !classColor;
+  document.getElementById("classColorToggle").classList.toggle("on", classColor);
+  renderGrid();
+}
+
+/* ════════════════
+   내 정보
+════════════════ */
+function getMyFullName(){
+  const name = document.getElementById("myName").value.trim();
+  const cls  = document.getElementById("myClass").value;
+  if(!name || !cls) return null;
+  return name+" ("+cls+")";
+}
+function isAdmin(){
+  const my = getMyFullName();
+  return my && ADMIN_LIST.has(my);
+}
+
+function markDirty(fullName){
+  dirtyRows.add(fullName);
+  document.getElementById("sendBtn").style.display = dirtyRows.size>0 ? "" : "none";
+}
+function clearDirty(){
+  dirtyRows.clear();
+  document.getElementById("sendBtn").style.display = "none";
+}
+
+function onMyInfoChange(){
+  const name  = document.getElementById("myName").value.trim();
+  const cls   = document.getElementById("myClass").value;
+  const badge = document.getElementById("myBadge");
+  const guide = document.getElementById("userGuide");
+
+  if(name && cls){
+    const fullName = name+" ("+cls+")";
+    const admin    = ADMIN_LIST.has(fullName);
+    badge.textContent = (admin ? "🔑 " : "👤 ")+fullName;
+    badge.style.background  = admin ? "#fdf3d8" : "";
+    badge.style.borderColor = admin ? "var(--gold-border)" : "";
+    badge.style.color       = admin ? "var(--gold)" : "";
+    badge.style.display = "";
+    guide.classList.add("hidden");
+    loadDataForUser();
+  } else {
+    badge.style.display = "none";
+    guide.classList.remove("hidden");
   }
 }
 
-function buildSchedule() {
-  const area = document.getElementById("scheduleArea");
-  area.innerHTML = "";
+async function loadDataForUser(){
+  if(!SCRIPT_URL){ renderGrid(); return; }
+  showLoading("데이터 불러오는 중...");
+  try{
+    const url = SCRIPT_URL + "?action=read&t=" + Date.now();
+    const res = await fetch(url, { method:"GET", redirect:"follow" });
+    const data = await res.json();
+    if(data.status==="ok"){
+      cachedRows = data.rows || [];
+      originalRows = {};
+      cachedRows.forEach(r=>{ originalRows[r.name] = JSON.stringify(r.selections||{}); });
+      clearDirty();
+    }
+  } catch(e){
+    showToast("데이터를 불러오지 못했습니다.","error");
+  } finally{
+    hideLoading();
+    renderGrid();
+  }
+}
 
-  WEEKS.forEach(week => {
+/* ════════════════
+   구글시트로 보내기
+   — index_old 저장 양식과 동일하게 전송
+════════════════ */
+async function sendToSheet(){
+  if(dirtyRows.size===0){ showToast("변경된 내용이 없습니다","error"); return; }
+  if(!SCRIPT_URL){ showToast("SCRIPT_URL이 설정되지 않았습니다.","error"); return; }
+
+  const toSend = cachedRows.filter(r=>dirtyRows.has(r.name));
+  if(toSend.length===0){ showToast("전송할 데이터가 없습니다","error"); return; }
+
+  showLoading("구글시트로 전송 중...");
+  document.getElementById("sendBtn").disabled = true;
+  try{
+    for(const row of toSend){
+      // ★ index_old 저장 양식과 동일한 payload 구성
+      const payload = buildPayload(row);
+      payload.action    = "save";        // Apps Script가 인식하는 액션
+      payload.timestamp = getTimestamp(); // 최신 타임스탬프로 갱신
+
+      const sendUrl = SCRIPT_URL
+        + "?action=save"
+        + "&name=" + encodeURIComponent(payload.name)
+        + "&timestamp=" + encodeURIComponent(payload.timestamp)
+        + "&selections=" + encodeURIComponent(JSON.stringify(payload.selections))
+        + "&t=" + Date.now();
+      const res = await fetch(sendUrl, { method:"GET", redirect:"follow" });
+      const result = await res.json();
+      if(result.status !== "ok") throw new Error(result.message || "오류");
+    }
+    showToast("✓ "+toSend.length+"명 구글시트 전송 완료!","success");
+    clearDirty();
+    await loadData();
+  } catch(e){
+    showToast("전송 오류: "+e.message,"error");
+  } finally{
+    hideLoading();
+    document.getElementById("sendBtn").disabled = false;
+  }
+}
+
+function toggleHideEmpty(){
+  hideEmpty = !hideEmpty;
+  document.getElementById("hideEmptyToggle").classList.toggle("on", hideEmpty);
+  renderGrid();
+}
+
+/* ════════════════
+   데이터 로드
+════════════════ */
+async function loadData(clearFilters=false){
+  if(clearFilters){
+    clearAllTags();
+    document.getElementById("filterClass").value = "";
+    document.getElementById("filterWeek").value  = "";
+  }
+  if(!SCRIPT_URL){ renderGrid(); return; }
+  showLoading("불러오는 중...");
+  try{
+    // ★ 전체 취합: 모든 시트(수주반,분주반,화요반,교역자,기도후원자(OB)) 데이터를 한번에 읽어옴
+    const readUrl = SCRIPT_URL + "?action=read&t=" + Date.now();
+    const res = await fetch(readUrl, { method:"GET", redirect:"follow" });
+    const data = await res.json();
+    if(data.status !== "ok") throw new Error(data.message || "오류");
+    cachedRows = data.rows || [];
+  } catch(e){
+    showToast("데이터를 불러오지 못했습니다.","error");
+  } finally{
+    hideLoading();
+    renderGrid();
+  }
+}
+
+/* ════════════════
+   태그 검색
+════════════════ */
+let nameTags = [];
+
+function initTagSearch(){
+  const input = document.getElementById("filterName");
+  input.addEventListener("keyup", e=>{ if(e.key==="Enter") addTagFromInput(); });
+  input.addEventListener("input", ()=>applyFilter());
+  document.getElementById("tagSearchWrap").addEventListener("click", e=>{
+    if(e.target===document.getElementById("tagSearchWrap")||
+       e.target===document.getElementById("tagList"))
+      input.focus();
+  });
+}
+
+function addTagFromInput(){
+  const input = document.getElementById("filterName");
+  const val   = input.value.trim();
+  if(!val) return;
+  const norm = val.toLowerCase();
+  if(!nameTags.includes(norm)){ nameTags.push(norm); renderTags(); }
+  input.value = "";
+  input.focus();
+  applyFilter();
+}
+function removeTag(tag){ nameTags = nameTags.filter(t=>t!==tag); renderTags(); applyFilter(); }
+function clearAllTags(){
+  nameTags=[];
+  document.getElementById("filterName").value="";
+  renderTags(); applyFilter();
+}
+function renderTags(){
+  const list     = document.getElementById("tagList");
+  const clearBtn = document.getElementById("tagClearBtn");
+  list.innerHTML = "";
+  nameTags.forEach(tag=>{
+    const item = document.createElement("div");
+    item.className = "tag-item";
+    item.innerHTML = tag+'<button onclick="removeTag(\''+tag+'\')">✕</button>';
+    list.appendChild(item);
+  });
+  clearBtn.style.display = nameTags.length>0 ? "" : "none";
+}
+
+/* ════════════════
+   필터
+════════════════ */
+function getFilter(){
+  return {
+    tags:  [...nameTags],
+    input: document.getElementById("filterName").value.trim().toLowerCase(),
+    cls:   document.getElementById("filterClass").value,
+    week:  document.getElementById("filterWeek").value,
+  };
+}
+function rowMatches(row, f){
+  if(f.cls && !row.name.includes(f.cls)) return false;
+  const short = row.name.replace(/\s*\(.*?\)\s*$/,"").trim().toLowerCase();
+  const full  = row.name.toLowerCase();
+  if(f.tags.length>0){
+    const tagMatch = f.tags.some(t=>full.includes(t)||short.includes(t));
+    if(!tagMatch) return false;
+  }
+  if(f.input && !full.includes(f.input) && !short.includes(f.input)) return false;
+  return true;
+}
+function applyFilter(){ renderGrid(); }
+
+/* ════════════════
+   그리드 렌더
+════════════════ */
+function renderGrid(){
+  const f        = getFilter();
+  const weekIdx  = f.week !== "" ? parseInt(f.week) : null;
+  const targetWeeks = weekIdx !== null ? [WEEKS[weekIdx]] : WEEKS;
+
+  const matchedNames = new Set(
+    cachedRows.filter(r=>rowMatches(r,f)).map(r=>r.name)
+  );
+  const hasFilter = f.tags.length>0 || f.input || f.cls;
+
+  const total   = cachedRows.length;
+  const matched = matchedNames.size;
+  document.getElementById("statusCount").textContent =
+    hasFilter ? "전체 "+total+"명 중 "+matched+"명 표시" : "전체 "+total+"명 신청";
+
+  const section = document.getElementById("gridSection");
+  section.innerHTML = "";
+
+  targetWeeks.forEach(week=>{
     const block = document.createElement("div");
     block.className = "week-block";
 
@@ -437,17 +716,15 @@ function buildSchedule() {
     block.appendChild(title);
 
     const table = document.createElement("table");
-    table.className = "grid-table";
+    table.className = "agg-table";
 
-    // 헤더
     const thead = document.createElement("thead");
     const hrow  = document.createElement("tr");
-    const thEmpty = document.createElement("th");
-    thEmpty.className = "lbl-col";
-    hrow.appendChild(thEmpty);
-    week.dates.forEach(d => {
+    const thLbl = document.createElement("th");
+    thLbl.className = "lbl-col"; hrow.appendChild(thLbl);
+    week.dates.forEach(d=>{
       const th = document.createElement("th");
-      if (d.type) th.className = d.type;
+      if(d.type) th.className = d.type;
       th.style.whiteSpace = "pre-line";
       th.textContent = d.label;
       hrow.appendChild(th);
@@ -455,211 +732,276 @@ function buildSchedule() {
     thead.appendChild(hrow);
     table.appendChild(thead);
 
-    // 바디
     const tbody = document.createElement("tbody");
-    MEALS.forEach(meal => {
-      const tr = document.createElement("tr");
-      const tdLabel = document.createElement("td");
-      tdLabel.className = "meal-label";
-      tdLabel.style.whiteSpace = "pre-line";
-      tdLabel.textContent = meal.label;
-      tr.appendChild(tdLabel);
+    MEALS.forEach(meal=>{
+      const tr    = document.createElement("tr");
+      const tdLbl = document.createElement("td");
+      tdLbl.className = "meal-lbl";
+      tdLbl.style.whiteSpace = "pre-line";
+      tdLbl.textContent = meal.label;
+      tr.appendChild(tdLbl);
 
-      week.dates.forEach(d => {
-        const key = d.key + "_" + meal.key;
-        const td  = document.createElement("td");
-        const hasApplicant = sheetData[key] > 0;
-        td.className = "slot" + (sel[key] ? " selected" : "") + (hasApplicant ? " has-applicant" : "");
-        td.onclick = () => toggle(td, key);
-        const inner = document.createElement("div");
-        inner.className = "slot-inner";
-        inner.innerHTML  = sel[key] ? "&#10004;" : "";
-        td.appendChild(inner);
+      week.dates.forEach(d=>{
+        const slotKey  = d.key+"_"+meal.key;
+        const allNames = cachedRows
+          .filter(r=>r.selections&&r.selections[slotKey]==="O")
+          .map(r=>r.name);
+
+        const td = document.createElement("td");
+        td.className = "cell"+(allNames.length>0?" has-names":" zero");
+        td.onclick = ()=>openCellModal(slotKey);
+
+        if(allNames.length===0){
+          const dot = document.createElement("div");
+          dot.className = "cell-dot"; dot.textContent = "·";
+          td.appendChild(dot);
+        } else {
+          const wrap = document.createElement("div");
+          wrap.className = "cell-names";
+          allNames.forEach(fullName=>{
+            const isMatch = matchedNames.has(fullName);
+            if(hideEmpty && hasFilter && !isMatch) return;
+            const short = fullName.replace(/\s*\(.*?\)\s*$/,"").trim();
+            const chip  = document.createElement("div");
+            chip.className = "name-chip";
+            chip.textContent = short;
+            if(classColor){
+              const colorCls = getClassColorCls(fullName);
+              if(colorCls) chip.classList.add(colorCls);
+            }
+            if(hasFilter){
+              chip.classList.add(isMatch ? "match" : "dim");
+            }
+            wrap.appendChild(chip);
+          });
+          if(wrap.children.length===0){
+            td.className = "cell zero";
+            const dot = document.createElement("div");
+            dot.className = "cell-dot"; dot.textContent = "·";
+            td.appendChild(dot);
+          } else {
+            td.appendChild(wrap);
+          }
+        }
         tr.appendChild(td);
       });
       tbody.appendChild(tr);
     });
     table.appendChild(tbody);
     block.appendChild(table);
-    area.appendChild(block);
+    section.appendChild(block);
+  });
+}
+
+/* ════════════════
+   셀 팝업
+════════════════ */
+let cellModalKey  = null;
+let cellModalSel  = {};
+
+function openCellModal(slotKey){
+  if(!getMyFullName()){
+    showToast("이름과 반명을 먼저 입력해 주세요","error");
+    document.getElementById("myName").focus();
+    return;
+  }
+  cellModalKey = slotKey;
+  cellModalSel = {};
+
+  const parts     = slotKey.split("_");
+  const dateObj   = ALL_DATES.find(d=>d.key===parts[0]);
+  const mealObj   = MEALS.find(m=>m.key===parts[1]);
+  const dateLabel = dateObj ? dateObj.label.replace("\n"," ") : parts[0];
+  const mealLabel = mealObj ? mealObj.short : parts[1];
+
+  document.getElementById("cellModalTitle").textContent = dateLabel+" "+mealLabel+" 기도";
+
+  const myName  = document.getElementById("myName").value.trim();
+  const myClass = document.getElementById("myClass").value;
+  document.getElementById("addName").value  = myName;
+  document.getElementById("addClass").value = myClass;
+
+  renderModalList();
+  document.body.style.overflow = "hidden";
+  document.getElementById("cellModal").classList.add("show");
+}
+
+function renderModalList(){
+  const list = document.getElementById("cellModalList");
+  list.innerHTML = "";
+  cachedRows.forEach(row=>{
+    const isChecked = cellModalSel.hasOwnProperty(row.name)
+      ? cellModalSel[row.name]
+      : (row.selections && row.selections[cellModalKey]==="O");
+    cellModalSel[row.name] = isChecked;
+    list.appendChild(makeCheckItem(row.name, isChecked));
+  });
+}
+
+function makeCheckItem(fullName, isChecked){
+  const short      = fullName.replace(/\s*\(.*?\)\s*$/,"").trim();
+  const cls        = (fullName.match(/\(([^)]+)\)/)||[])[1]||"";
+  const myFullName = getMyFullName();
+  const isMe       = myFullName && fullName === myFullName;
+  const canToggle  = !myFullName || isAdmin() || isMe;
+
+  const item = document.createElement("div");
+  item.className = "cell-check-item"+(isChecked?" checked":"");
+  if(!canToggle) item.classList.add("readonly");
+  item.dataset.name = fullName;
+
+  const box      = document.createElement("div");
+  box.className  = "cell-check-box";
+  box.textContent = isChecked?"✓":"";
+
+  const nameSpan      = document.createElement("span");
+  nameSpan.className  = "cell-check-name";
+  nameSpan.textContent = short;
+
+  const clsSpan      = document.createElement("span");
+  clsSpan.className  = "cell-check-class";
+  clsSpan.textContent = cls;
+
+  if(!canToggle){
+    const lockSpan = document.createElement("span");
+    lockSpan.style.cssText = "font-size:11px;color:#ccc;margin-left:2px;";
+    lockSpan.textContent = "🔒";
+    item.append(box, nameSpan, clsSpan, lockSpan);
+  } else {
+    item.append(box, nameSpan, clsSpan);
+  }
+
+  item.onclick = ()=>{
+    if(!canToggle){ showToast("본인 항목만 수정할 수 있습니다","error"); return; }
+    const next = !cellModalSel[fullName];
+    cellModalSel[fullName] = next;
+    item.classList.toggle("checked", next);
+    box.textContent = next?"✓":"";
+    nameSpan.style.color      = next?"var(--olive)":"";
+    nameSpan.style.fontWeight = next?"600":"";
+  };
+  return item;
+}
+
+function addNewPerson(){
+  const name = document.getElementById("addName").value.trim();
+  const cls  = document.getElementById("addClass").value;
+  if(!name){ showToast("이름을 입력해 주세요","error"); return; }
+  if(!cls)  { showToast("반을 선택해 주세요","error");   return; }
+
+  const fullName   = name+" ("+cls+")";
+  const myFullName = getMyFullName();
+
+  if(myFullName && !isAdmin() && fullName !== myFullName){
+    showToast("본인 항목만 추가할 수 있습니다","error"); return;
+  }
+
+  const existingRow = cachedRows.find(r=>r.name===fullName);
+  if(existingRow){
+    cellModalSel[fullName] = true;
+    const list = document.getElementById("cellModalList");
+    const item = Array.from(list.children).find(el=>el.dataset.name===fullName);
+    if(item){
+      item.classList.add("checked");
+      item.querySelector(".cell-check-box").textContent = "✓";
+      item.querySelector(".cell-check-name").style.color = "var(--olive)";
+      item.querySelector(".cell-check-name").style.fontWeight = "600";
+      item.scrollIntoView({behavior:"smooth",block:"nearest"});
+    }
+    showToast(name+"님 체크됨","success"); return;
+  }
+
+  if(cellModalSel.hasOwnProperty(fullName)){
+    cellModalSel[fullName] = true;
+    const list = document.getElementById("cellModalList");
+    const item = Array.from(list.children).find(el=>el.dataset.name===fullName);
+    if(item){
+      item.classList.add("checked");
+      item.querySelector(".cell-check-box").textContent = "✓";
+    }
+    showToast(name+"님 체크됨","success"); return;
+  }
+
+  cellModalSel[fullName] = true;
+  const list = document.getElementById("cellModalList");
+  list.insertBefore(makeCheckItem(fullName, true), list.firstChild);
+  showToast(name+"님 추가됨","success");
+
+  document.getElementById("addName").value  = document.getElementById("myName").value.trim();
+  document.getElementById("addClass").value = document.getElementById("myClass").value;
+}
+
+function closeCellModal(){
+  document.getElementById("cellModal").classList.remove("show");
+  document.body.style.overflow = "";
+  cellModalKey = null; cellModalSel = {};
+}
+function onModalBg(e){
+  if(e.target===document.getElementById("cellModal")) closeCellModal();
+}
+
+async function saveCellModal(){
+  if(!cellModalKey) return;
+
+  const myFullName = getMyFullName();
+  const changed    = [];
+  Object.entries(cellModalSel).forEach(([fullName, isChecked])=>{
+    const row        = cachedRows.find(r=>r.name===fullName);
+    const wasChecked = row ? (row.selections&&row.selections[cellModalKey]==="O") : false;
+    if(wasChecked === isChecked) return;
+    if(myFullName && !isAdmin() && fullName !== myFullName && !isChecked) return;
+    changed.push({fullName, isChecked, row});
   });
 
-  updateSummary();
-}
+  if(changed.length===0){ showToast("변경된 내용이 없습니다","error"); return; }
 
-function toggle(td, key) {
-  sel[key] = !sel[key];
-  td.classList.toggle("selected", sel[key]);
-  td.querySelector(".slot-inner").innerHTML  = sel[key] ? "&#10004;" : "";
-  updateSummary();
-}
-
-function updateSummary() {
-  let total = 0, morning = 0, lunch = 0, evening = 0;
-  Object.keys(sel).forEach(k => {
-    if (!sel[k]) return;
-    total++;
-    if (k.endsWith("_morning")) morning++;
-    if (k.endsWith("_lunch"))   lunch++;
-    if (k.endsWith("_evening")) evening++;
-  });
-  document.getElementById("cTotal").textContent   = total;
-  document.getElementById("cMorning").textContent = morning;
-  document.getElementById("cLunch").textContent   = lunch;
-  document.getElementById("cEvening").textContent = evening;
-}
-
-function clearAll() {
-  Object.keys(sel).forEach(k => delete sel[k]);
-  buildSchedule();
-}
-
-async function submitToSheet() {
-  const name      = document.getElementById("nameInput").value.trim();
-  const className = document.getElementById("classInput").value;
-
-  if (!name) {
-    document.getElementById("nameInput").classList.add("error");
-    showToast("이름을 입력해 주세요", "error");
-    document.getElementById("nameInput").focus();
-    return;
-  }
-  document.getElementById("nameInput").classList.remove("error");
-
-  if (!className) {
-    document.getElementById("classInput").classList.add("error");
-    showToast("반명을 선택해 주세요", "error");
-    return;
-  }
-  document.getElementById("classInput").classList.remove("error");
-
-  if (Object.values(sel).filter(Boolean).length === 0) {
-    showToast("기도 시간대를 한 개 이상 선택해 주세요", "error");
-    return;
-  }
-
-  if (SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE") {
-    showToast("⚠️ Apps Script URL을 설정해 주세요", "error");
-    return;
-  }
-
-  const fullName   = name + " (" + className + ")";
-  const selections = {};
-  WEEKS.flatMap(w => w.dates).forEach(d =>
-    MEALS.forEach(m => {
-      selections[d.key + "_" + m.key] = sel[d.key + "_" + m.key] ? "O" : "";
-    })
-  );
-
-  document.getElementById("loadingOverlay").classList.add("show");
-  document.getElementById("submitBtn").disabled = true;
-
-  try {
-    const sendUrl = SCRIPT_URL
-      + "?action=save"
-      + "&name="       + encodeURIComponent(fullName)
-      + "&timestamp="  + encodeURIComponent(new Date().toLocaleString("ko-KR"))
-      + "&selections=" + encodeURIComponent(JSON.stringify(selections))
-      + "&t="          + Date.now();
-    const res    = await fetch(sendUrl, { method:"GET", redirect:"follow" });
-    const result = await res.json();
-    if (result.status === "ok") {
-      showToast("저장 완료!", "success");
-      setTimeout(() => {
-        clearAll();
-        document.getElementById("nameInput").value  = "";
-        document.getElementById("classInput").value = "";
-      }, 1500);
+  // 로컬 cachedRows 업데이트
+  changed.forEach(({fullName, isChecked, row})=>{
+    if(row){
+      if(!row.selections) row.selections = {};
+      row.selections[cellModalKey] = isChecked ? "O" : "";
     } else {
-      showToast("오류: " + (result.message || "다시 시도해 주세요"), "error");
+      const newSel = {};
+      ALL_DATES.forEach(d=>MEALS.forEach(m=>{ newSel[d.key+"_"+m.key] = ""; }));
+      newSel[cellModalKey] = "O";
+      cachedRows.push({ name:fullName, timestamp:getTimestamp(), selections:newSel });
     }
-  } catch (e) {
-    showToast("네트워크 오류. 다시 시도해 주세요.", "error");
-  } finally {
-    document.getElementById("loadingOverlay").classList.remove("show");
-    document.getElementById("submitBtn").disabled = false;
-  }
+    markDirty(fullName);
+  });
+
+  showToast("✓ "+changed.length+"건 임시 저장됨 — '보내기'를 눌러 최종 전송하세요","success");
+  closeCellModal();
+  renderGrid();
 }
 
-function showToast(msg, type = "") {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.className   = "toast show " + type;
-  setTimeout(() => { t.className = "toast"; }, 3500);
-}
-
-// =============================================
-// 내 신청 내역 불러오기
-// =============================================
-async function loadMyData() {
-  const name      = document.getElementById("nameInput").value.trim();
-  const className = document.getElementById("classInput").value;
-  const statusEl  = document.getElementById("loadStatus");
-
-  if (!name) {
-    document.getElementById("nameInput").classList.add("error");
-    setLoadStatus("이름을 입력해 주세요", "error");
-    document.getElementById("nameInput").focus();
-    return;
-  }
-  document.getElementById("nameInput").classList.remove("error");
-
-  if (!className) {
-    document.getElementById("classInput").classList.add("error");
-    setLoadStatus("반명을 선택해 주세요", "error");
-    return;
-  }
-  document.getElementById("classInput").classList.remove("error");
-
-  const fullName = name + " (" + className + ")";
-  setLoadStatus("불러오는 중...", "");
-
+/* ════════════════
+   공통 유틸
+════════════════ */
+function showLoading(msg){
+  document.getElementById("loadingMsg").textContent = msg||"로딩 중...";
   document.getElementById("loadingOverlay").classList.add("show");
-  try {
-    const url = SCRIPT_URL + "?action=read&t=" + Date.now();
-    const res  = await fetch(url, { method:"GET", redirect:"follow" });
-    const data = await res.json();
-
-    if (data.status !== "ok") throw new Error(data.message || "오류");
-
-    // fullName 일치하는 행 찾기
-    const row = (data.rows || []).find(r => r.name === fullName);
-
-    if (!row) {
-      // 데이터 없으면 전체 초기화
-      Object.keys(sel).forEach(k => delete sel[k]);
-      buildSchedule();
-      setLoadStatus("⚠️ 등록된 내역이 없습니다. 새로 선택해 주세요.", "error");
-      return;
-    }
-
-    // sel 객체에 반영
-    Object.keys(sel).forEach(k => delete sel[k]);
-    Object.entries(row.selections || {}).forEach(([k, v]) => {
-      if (v === "O") sel[k] = true;
-    });
-
-    buildSchedule();
-    const count = Object.values(sel).filter(Boolean).length;
-    setLoadStatus(count + "개 항목을 불러왔습니다.", "ok");
-
-  } catch(e) {
-    setLoadStatus("불러오기 실패: " + e.message, "error");
-  } finally {
-    document.getElementById("loadingOverlay").classList.remove("show");
-  }
 }
-
-function setLoadStatus(msg, type) {
-  const el = document.getElementById("loadStatus");
-  el.textContent = msg;
-  el.className = "load-status" + (type ? " " + type : "");
+function hideLoading(){ document.getElementById("loadingOverlay").classList.remove("show"); }
+function showToast(msg, type=""){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.className = "toast show "+type;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>{ t.className="toast"; }, 3000);
+}
+function getTimestamp(){
+  try{ return new Date().toLocaleString("ko-KR"); }
+  catch(e){
+    const d = new Date();
+    return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+
+           d.getHours()+":"+String(d.getMinutes()).padStart(2,"0");
+  }
 }
 
 // 초기 실행
-buildSchedule();
-loadSheetCounts();
-
+document.addEventListener("DOMContentLoaded", ()=>{
+  initTagSearch();
+  loadData();
+});
 </script>
 </body>
 </html>
