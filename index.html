@@ -135,10 +135,13 @@
   }
   .grid-table td.slot {
     border:1px solid var(--border); text-align:center;
-    padding:0; height:48px; cursor:pointer; background:white;
+    padding:0; height:48px; cursor:pointer; background:#e8e8e8;
     transition:background 0.1s;
     touch-action:manipulation;
     -webkit-user-select:none; user-select:none;
+  }
+  .grid-table td.slot.has-applicant {
+    background:white;
   }
   .grid-table td.slot:active { background:#f0f5e8; }
   .grid-table td.slot.selected {
@@ -147,8 +150,7 @@
   .slot-inner {
     width:100%; height:100%;
     display:flex; align-items:center; justify-content:center;
-    font-size:22px; font-weight:700; color:var(--olive);
-    pointer-events:none; font-family:'Noto Sans KR',sans-serif;
+    font-size:20px; color:var(--olive); pointer-events:none;
   }
 
   /* ── 선택 현황 ── */
@@ -364,6 +366,28 @@ const MEALS = [
 ];
 
 const sel = {};
+let sheetData = {}; // 구글시트 전체 신청 현황 { "0517_morning": 2, ... }
+
+// 페이지 로드 시 구글시트 신청 현황 미리 가져오기
+async function loadSheetCounts() {
+  try {
+    const url = SCRIPT_URL + "?action=read&t=" + Date.now();
+    const res  = await fetch(url, { method:"GET", redirect:"follow" });
+    const data = await res.json();
+    if (data.status !== "ok") return;
+
+    // 각 슬롯별 신청자 수 집계
+    sheetData = {};
+    (data.rows || []).forEach(row => {
+      Object.entries(row.selections || {}).forEach(([key, val]) => {
+        if (val === "O") sheetData[key] = (sheetData[key] || 0) + 1;
+      });
+    });
+    buildSchedule(); // 신청 현황 반영하여 다시 그리기
+  } catch(e) {
+    // 실패해도 그리드는 그냥 표시
+  }
+}
 
 function buildSchedule() {
   const area = document.getElementById("scheduleArea");
@@ -410,11 +434,12 @@ function buildSchedule() {
       week.dates.forEach(d => {
         const key = d.key + "_" + meal.key;
         const td  = document.createElement("td");
-        td.className = "slot" + (sel[key] ? " selected" : "");
+        const hasApplicant = sheetData[key] > 0;
+        td.className = "slot" + (sel[key] ? " selected" : "") + (hasApplicant ? " has-applicant" : "");
         td.onclick = () => toggle(td, key);
         const inner = document.createElement("div");
         inner.className = "slot-inner";
-        inner.textContent = sel[key] ? "v" : "";
+        inner.innerHTML  = sel[key] ? "&#10004;" : "";
         td.appendChild(inner);
         tr.appendChild(td);
       });
@@ -431,7 +456,7 @@ function buildSchedule() {
 function toggle(td, key) {
   sel[key] = !sel[key];
   td.classList.toggle("selected", sel[key]);
-  td.querySelector(".slot-inner").textContent = sel[key] ? "v" : "";
+  td.querySelector(".slot-inner").innerHTML  = sel[key] ? "&#10004;" : "";
   updateSummary();
 }
 
@@ -597,6 +622,9 @@ function setLoadStatus(msg, type) {
   el.className = "load-status" + (type ? " " + type : "");
 }
 
+// 초기 실행
+buildSchedule();
+loadSheetCounts();
 
 </script>
 </body>
