@@ -169,6 +169,24 @@
   }
   .count-label { font-size:13px; color:var(--muted); margin-top:3px; }
 
+  /* ── 범례 ── */
+  .legend-bar {
+    display:flex; gap:14px; align-items:center;
+    padding:8px 14px; margin:8px 12px 0;
+    background:var(--parchment); border:1px solid var(--border);
+    border-radius:var(--radius); flex-wrap:wrap;
+  }
+  .legend-item { display:flex; align-items:center; gap:6px; }
+  .legend-item span { font-size:12px; color:var(--muted); }
+  .legend-box {
+    width:22px; height:22px; border:1px solid var(--border);
+    border-radius:4px; display:flex; align-items:center; justify-content:center;
+    font-size:13px; flex-shrink:0;
+  }
+  .legend-empty { background:#e8e8e8; }
+  .legend-has   { background:white; }
+  .legend-mine  { background:var(--olive); color:white; font-weight:600; }
+
   /* ── 불러오기 버튼 ── */
   .load-row {
     display:flex; gap:8px; margin-top:10px;
@@ -285,6 +303,22 @@
   <div class="load-status" id="loadStatus"></div>
 </div>
 
+
+<!-- 범례 -->
+<div class="legend-bar">
+  <div class="legend-item">
+    <div class="legend-box legend-empty"></div>
+    <span>미신청 셀</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-box legend-has"></div>
+    <span>신청자 있음</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-box legend-mine">&#10004;</div>
+    <span>내 선택</span>
+  </div>
+</div>
 <div class="schedule-wrap" id="scheduleArea"></div>
 
 <div class="summary">
