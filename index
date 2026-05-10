@@ -2272,7 +2272,7 @@ const ADMIN_KEY    = 'cp1_admin_auth'; // 인증 세션 (탭 닫으면 만료)
 const ADMIN_PW = 'admin1234';
 
 // ── 기본 서버 URL (관리자 설정에서 변경 가능) ──
-const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycbxOnpyq_sNUSsKb3IYCfznWxdStNwr9UJrBnC5l2oBTWgB9YSzzPMd_QVXqPsX2nwcN/exec';
+const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycbx2soRw7BiVCZK4ChdWwUlVvKvsWjzt6WLEGX0YxMQWnA9Q877VNo52r4pGmpEtMNE/exec';
 
 let logMode     = (function(){ try{ return localStorage.getItem(LOG_MODE_KEY)||'server'; }catch(e){ return 'server'; } })();
 let serverUrl   = (function(){ try{ return localStorage.getItem(LOG_URL_KEY)||DEFAULT_GAS_URL; }catch(e){ return DEFAULT_GAS_URL; } })();
