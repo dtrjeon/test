@@ -1,259 +1,3 @@
-
-Claude가 응답을 완료했습니다
-
-index-CP1-log-v2.html
-html
-
-
-CP1_로그수신_AppScript_v3.gs
-gs
-
-오후 11:24
-Claude 응답: 두 파일을 모두 확인했습니다.
-
-2개의 파일 조회함
-2개의 파일 조회함
-두 파일을 모두 확인했습니다. 전도폭발훈련 전문 구두점검 앱이네요! 어떤 도움이 필요하신가요?
-
-두 파일의 구조를 간단히 정리하면:
-
-HTML 파일 (index-CP1-log-v2.html)
-
-모바일 최적화 다크테마 구두점검 앱
-챕터별 암송 텍스트 입력 후 AI(Clova/STT) 기반 발화 비교 및 일치율 채점
-점검 기록 로컬 저장 + Google Apps Script 서버 전송 기능
-오류 단어 히트맵, 회차별 분석 모달 포함
-GAS 파일 (CP1_로그수신_AppScript_v3.gs)
-
-Google Sheets 수신 웹앱
-3개 시트 자동 관리: 점검기록 / 통계 / 오류분석
-저점수 이메일 알림, 개인별 요약 보고서 생성 기능
-v3에서 errWords 오류 단어 분석 기능 추가
-무엇을 도와드릴까요? 수정이나 기능 추가, 버그 수정 등 구체적으로 말씀해 주세요!
-
-입력 내용: gs 화일에 초기화와 테스트모드를 추가해줘
-gs 화일에 초기화와 테스트모드를 추가해줘
-
-오후 11:25
-Claude 응답: 전체 코드를 파악했습니다.
-
-Reading truncated section of GAS file
-Reading truncated section of GAS file
-전체 코드를 파악했습니다. 이제 초기화와 테스트 모드를 추가하겠습니다.
-
-
-6개 파일 수정됨, 명령 실행함
-6개 파일 수정됨, 명령 실행함
-이제 초기화 함수들과 테스트 모드 함수들을 파일 끝에 추가합니다.
-
-
-파일 수정됨, 명령 실행함, 파일 읽음
-파일 수정됨, 명령 실행함, 파일 읽음
-v4에 추가된 내용을 정리하면 다음과 같습니다.
-
-추가된 기능
-🗑 초기화 (메뉴 → 🗑 초기화)
-항목	동작
-점검기록 초기화	점검기록 시트 데이터 삭제, 헤더 유지
-통계 초기화	통계 시트 데이터 삭제, 헤더 유지
-오류분석 초기화	오류분석 시트 삭제 후 재생성 (조건부서식 포함)
-⚠ 전체 초기화	3개 시트 모두 초기화 — 이중 확인 후 실행
-🧪 테스트 모드 (메뉴 → 🧪 테스트 모드)
-항목	동작
-현재 모드 확인	TEST_MODE 상태를 다이얼로그로 표시
-테스트 데이터 전송 (샘플)	샘플 데이터로 doPost 로직 실행 — 저장 여부 선택 가능
-CONFIG 설정
-javascript
-TEST_MODE: false,  // true로 바꾸면 테스트 모드
-true → HTML에서 실제 fetch가 들어와도 시트에 저장하지 않고 Logger에만 출력
-false → 정상 운영 모드
-
-Cp1 로그수신 appscript v4
-GS 
-입력 내용: https://script.
-https://script.google.com/macros/s/AKfycbxOnpyq_sNUSsKb3IYCfznWxdStNwr9UJrBnC5l2oBTWgB9YSzzPMd_QVXqPsX2nwcN/exec
-
-오후 11:34
-Claude 응답: 이 URL은 Google Apps Script 웹앱 배포 URL이네요.
-이 URL은 Google Apps Script 웹앱 배포 URL이네요. 테스트해 드릴게요!
-
-
-웹 검색됨
-웹 검색됨
-script.google.com 도메인이 robots.txt로 외부 접근이 차단되어 있어서 제 쪽에서 직접 테스트는 불가합니다.
-
-대신 두 가지 방법으로 직접 테스트하실 수 있습니다.
-
-✅ 방법 1 — 브라우저 주소창에서 GET 연결 확인
-주소창에 URL 그대로 입력 → 정상 동작 — 전도폭발 구두점검 서버 연결 확인 ✓ 텍스트가 뜨면 정상입니다.
-
-✅ 방법 2 — HTML 파일에 URL 등록 후 연결 테스트
-HTML 앱의 서버 URL 입력창에 붙여넣고 저장 → 연결 테스트 버튼 클릭
-
-✅ 방법 3 — curl로 POST 테스트 (터미널)
-bash
-curl -L -X POST \
-  "https://script.google.com/macros/s/AKfycbxOnpyq_sNUSsKb3IYCfznWxdStNwr9UJrBnC5l2oBTWgB9YSzzPMd_QVXqPsX2nwcN/exec" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "time": "2026.05.10 14:00",
-    "name": "테스트",
-    "chapter": "2장 은혜",
-    "accuracy": 85,
-    "grade": "우수",
-    "errWords": [{"t":"miss","aw":"하나님","bw":""}]
-  }'
-→ {"result":"ok","row":숫자} 가 오면 완벽하게 연결된 겁니다.
-
-혹시 브라우저에서 직접 접속했을 때 어떤 결과가 나오는지 알려주시면 추가로 도와드릴 수 있습니다!
-
-입력 내용: html 화일에 포함시켜줘
-html 화일에 포함시켜줘
-
-오후 11:39
-Claude 응답: HTML 파일의 서버 URL 부분을 찾아서 해당 URL을 기본값으로 넣겠습니다.
-HTML 파일의 서버 URL 부분을 찾아서 해당 URL을 기본값으로 넣겠습니다.
-
-
-3개의 파일 조회함, 명령 2개 실행함
-3개의 파일 조회함, 명령 2개 실행함
-이제 정확히 어디를 수정해야 할지 파악했습니다. URL을 기본값으로 하드코딩하겠습니다.
-
-
-2개 파일 수정됨, 명령 실행함
-2개 파일 수정됨, 명령 실행함
-이제 관리자 설정 패널이 열릴 때 입력창에도 자동으로 표시되도록 수정합니다.
-
-
-파일 조회함, 파일 수정됨
-파일 조회함, 파일 수정됨
-마찬가지로 관리자 인증 성공 후 설정 패널 열릴 때도 항상 표시되도록 수정합니다.
-
-
-파일 수정됨, 명령 실행함, 파일 읽음
-파일 수정됨, 명령 실행함, 파일 읽음
-완료됐습니다. 변경 내용은 딱 세 줄입니다.
-
-수정 내용 요약:
-
-js
-// 추가 — 기본값 상수 선언
-const DEFAULT_GAS_URL = 'https://script.google.com/.../exec';
-
-// 변경 — localStorage에 저장된 값이 없으면 DEFAULT_GAS_URL 사용
-let serverUrl = (function(){
-  try{ return localStorage.getItem(LOG_URL_KEY) || DEFAULT_GAS_URL; }
-  catch(e){ return DEFAULT_GAS_URL; }
-})();
-동작 방식:
-
-처음 열면 → GAS URL이 자동으로 입력창에 채워져 있음
-관리자가 다른 URL로 저장하면 → localStorage에 기록되어 그 URL 우선 사용
-localStorage를 지우면 → 다시 기본 URL로 복귀
-
-Index cp1 log v3
-코드 · HTML 
-입력 내용: 404
-404
-File not found
-
-오후 11:51
-Claude 응답: HTML 파일을 직접 열었을 때 나오는 브라우저 404가 아니라, 서버 연결 테스트 시 GAS URL에서 404가 반환되는 것으로 보입니다.
-HTML 파일을 직접 열었을 때 나오는 브라우저 404가 아니라, 서버 연결 테스트 시 GAS URL에서 404가 반환되는 것으로 보입니다.
-
-GAS 웹앱 URL이 만료되거나 재배포가 필요한 상황일 가능성이 높습니다. 확인해 보겠습니다.
-
-
-Failed to fetch: https://script.google.com/macros/s/AKfycbxOnpyq_sNUSsKb3IYCfznWxdStNwr9UJrBnC5l2oBTWgB9YSzzPMd_QVXqPsX2nwcN/exec
-Failed to fetch: https://script.google.com/macros/s/AKfycbxOnpyq_sNUSsKb3IYCfznWxdStNwr9UJrBnC5l2oBTWgB9YSzzPMd_QVXqPsX2nwcN/exec
-역시 제 쪽에서는 Google의 robots.txt 정책으로 접근이 막힙니다. 브라우저에서 직접 URL을 열어서 확인해 주세요.
-
-404가 뜨는 주요 원인과 해결 방법:
-
-① 가장 흔한 원인 — 배포가 삭제되거나 만료됨
-Google Apps Script → 배포 관리 에서 해당 배포가 살아있는지 확인하세요.
-
-② 해결: 새로 배포
-Apps Script 편집기 열기
-상단 배포 → 새 배포 클릭
-유형: 웹앱
-다음 사용자로 실행: 나 (본인)
-액세스: 모든 사람
-배포 → 새 URL 복사
-새 URL이 생기면 여기 붙여넣어 주시면 HTML에 다시 포함해 드리겠습니다.
-
-③ 기존 배포 URL 재사용하려면
-배포 → 배포 관리 → ✏️ 편집 에서 버전을 "새 버전" 으로 선택 후 업데이트하면 동일 URL 유지 가능합니다.
-
-입력 내용: index-CP1-log-v3.
-index-CP1-log-v3.html 이 서버모드로
-
-오후 11:52
-Claude 응답: HTML 파일에서 기본 로그 모드를 test에서 server로 바꾸겠습니다.
-HTML 파일에서 기본 로그 모드를 test에서 server로 바꾸겠습니다.
-
-
-명령 2개 실행함, 파일 수정됨, 파일 읽음
-명령 2개 실행함, 파일 수정됨, 파일 읽음
-완료됐습니다. 이제 처음 열 때부터 서버 모드가 기본으로 활성화됩니다.
-
-localStorage에 이전에 저장된 test 값이 있으면 그게 우선될 수 있으니, 브라우저에서 처음 열 때 이상하면 관리자 설정 → 서버 모드 토글을 한 번 껐다 켜서 저장해 주세요.
-
-Index cp1 log v3
-코드 · HTML 
-입력 내용: 서버모드의 비번은 admin1234인가
-서버모드의 비번은 admin1234인가
-
-오후 11:53
-Claude 응답: 네, 맞습니다.
-네, 맞습니다. HTML 코드에 하드코딩되어 있습니다.
-
-js
-// 현재 비밀번호: admin1234
-const ADMIN_PW_HASH = 'a117de2e6e3d2c59571ef58e26e69d8c4e43e7b8f8d7b5a69b98fd7b1e7f7f53';
-SHA-256 해시로 저장되어 있고, 원본 비밀번호는 admin1234 입니다.
-
-비밀번호를 바꾸고 싶으시면 말씀해 주세요. 원하는 비밀번호를 알려주시면 해시값 계산해서 HTML에 바로 반영해 드리겠습니다.
-
-입력 내용: 하드코딩하지 말고 그냥 admin1234로 해줘
-하드코딩하지 말고 그냥 admin1234로 해줘
-
-오후 11:53
-Claude 응답: 해시 대신 평문 비교로 바꾸겠습니다.
-해시 대신 평문 비교로 바꾸겠습니다.
-
-
-파일 조회함, 파일 수정됨, 명령 실행함
-파일 조회함, 파일 수정됨, 명령 실행함
-완료됐습니다. SHA-256 해시 방식을 제거하고 admin1234 평문 비교로 단순화했습니다. 비밀번호 변경이 필요할 때는 코드에서 ADMIN_PW 값만 바꾸면 됩니다.
-
-
-Index cp1 log v3
-코드 · HTML 
-입력 내용: 화일명을 index.
-화일명을 index.html 로
-
-오후 11:56
-Claude 응답: 바로 처리하겠습니다.
-바로 처리하겠습니다.
-
-
-명령 실행함, 파일 읽음
-명령 실행함, 파일 읽음
-index.html 로 저장됐습니다.
-
-
-Index
-코드 · HTML 
-
-Claude가 응답할 때 알림을 받으시겠습니까?
-
-
-
-Claude는 AI이며 실수할 수 있습니다. 응답을 다시 한번 확인해 주세요.
-Index · HTML
-복사
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -279,20 +23,20 @@ Index · HTML
 html,body{height:100%;}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .page{max-width:480px;margin:0 auto;padding:20px 16px 48px;}
- 
+
 /* Header */
 .header{margin-bottom:22px;position:relative;}
 .tag{display:inline-block;font-size:10px;letter-spacing:.12em;color:var(--accent);border:1px solid var(--accent-glow);background:var(--accent-glow);padding:3px 10px;border-radius:20px;margin-bottom:10px;text-transform:uppercase;}
 h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .subtitle{margin-top:6px;font-size:13px;color:var(--text-muted);}
 .slabel{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
- 
+
 /* 배너 */
 .banner{border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px;line-height:1.6;display:none;}
 .banner-warn{background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber);}
 .banner-ok{background:var(--green-bg);border:1px solid var(--green-border);color:var(--green);}
 .banner-err{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red);}
- 
+
 /* ── 서버 연결 상태 표시등 ── */
 .server-dot{
   display:inline-block;width:11px;height:11px;border-radius:50%;
@@ -327,7 +71,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 @keyframes dot-blink{
   0%,100%{opacity:1;} 50%{opacity:.3;}
 }
- 
+
 /* ── 로그 모드 카드 ── */
 .log-mode-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px;}
 .log-mode-row{display:flex;align-items:center;justify-content:space-between;gap:10px;}
@@ -335,12 +79,12 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .log-mode-icon{font-size:22px;flex-shrink:0;}
 .log-mode-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.3;}
 .log-mode-desc{font-size:11px;color:var(--text-muted);margin-top:2px;}
- 
+
 .btn-url-test{flex-shrink:0;padding:8px 12px;border-radius:8px;border:1px solid var(--border2);background:var(--surface2);color:var(--text-muted);font-family:'Noto Sans KR',sans-serif;font-size:12px;cursor:pointer;white-space:nowrap;touch-action:manipulation;}
 .btn-url-test:active{background:var(--border);}
 .gas-guide{margin-top:8px;font-size:12px;color:var(--clova);line-height:1.7;padding:8px 12px;background:var(--clova-bg);border:1px solid var(--clova-border);border-radius:8px;}
 .gas-guide strong{font-weight:600;}
- 
+
 /* 자물쇠 버튼 */
 .btn-admin-lock{
   flex-shrink:0;width:36px;height:36px;border-radius:50%;
@@ -350,7 +94,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 }
 .btn-admin-lock:active{background:var(--border);}
 .btn-admin-lock.unlocked{border-color:var(--clova-border);background:var(--clova-bg);font-size:15px;}
- 
+
 /* 관리자 모달 */
 .admin-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.75);align-items:center;justify-content:center;}
 .admin-modal.open{display:flex;}
@@ -379,10 +123,10 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .admin-setting-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;}
 .admin-setting-label{font-size:14px;color:var(--text);font-weight:500;}
 .btn-admin-confirm:active{background:#6a59ee;}
- 
+
 /* 모드 카드 - 서버모드 활성 표시 */
 .log-mode-card.server-active{border-color:var(--clova-border);background:var(--clova-bg);}
- 
+
 /* 모드 토글 */
 .log-toggle-switch{position:relative;display:inline-block;width:52px;height:28px;flex-shrink:0;}
 .log-toggle-switch input{opacity:0;width:0;height:0;position:absolute;}
@@ -390,7 +134,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .log-toggle-switch input:checked ~ .log-toggle-track{background:var(--clova);border-color:var(--clova);}
 .log-toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 1px 4px rgba(0,0,0,.3);}
 .log-toggle-switch input:checked ~ .log-toggle-track .log-toggle-thumb{transform:translateX(24px);}
- 
+
 /* 서버 URL 입력 */
 .server-url-row{display:flex;gap:8px;margin-top:10px;}
 .server-url-input{flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:13px;outline:none;}
@@ -402,19 +146,19 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .server-status.ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
 .server-status.err{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);}
 .server-status.sending{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);}
- 
+
 /* ── 사용자 입력 카드 ── */
 .user-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px;}
 .user-card-header{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--surface2);}
 .user-input{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:400;padding:10px 14px;}
 .user-input::placeholder{color:var(--text-dim);}
- 
+
 /* ── 로그 버튼 영역 ── */
 .log-row{display:flex;gap:8px;margin-bottom:14px;}
 .btn-log{flex:1;min-height:42px;border-radius:10px;border:1px solid var(--border2);background:var(--surface2);color:var(--text-muted);font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;touch-action:manipulation;}
 .btn-log:active{background:var(--border);}
 .btn-log.accent{border-color:var(--accent);background:var(--accent-glow);color:var(--accent);}
- 
+
 .btn-log-tool.analysis{background:rgba(124,106,255,.2);color:var(--accent);border:1px solid rgba(124,106,255,.4);}
 .analysis-select{flex:1;min-width:100px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:7px 10px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:13px;outline:none;}
 .btn-analysis-run{padding:7px 16px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;touch-action:manipulation;}
@@ -437,7 +181,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .err-word-bar{height:100%;border-radius:3px;background:var(--red);}
 .err-word-cnt{font-size:12px;color:var(--text-muted);white-space:nowrap;}
 .err-word-sub{font-size:11px;color:var(--blue);}
- 
+
 /* ── 로그 모달 ── */
 .log-modal{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.8);overflow-y:auto;}
 .log-modal.open{display:block;}
@@ -463,7 +207,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
   cursor:pointer;white-space:nowrap;touch-action:manipulation;
 }
 .btn-log-replay:active{background:var(--accent);color:#fff;}
- 
+
 /* ── 미리보기: 누적오류 섹션 ── */
 .pv-acc-section{margin-top:6mm;padding:3mm 4mm;border:1pt solid #e0c0c0;border-radius:2mm;background:#fff8f8;}
 .pv-acc-title{font-size:9pt;font-weight:700;color:#cc0000;margin-bottom:2mm;letter-spacing:.04em;}
@@ -477,7 +221,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .pv-acc-chip.freq2{background:#fce5cd;border-color:#e06020;color:#c05010;}
 .pv-acc-chip.freq1{background:#fff2cc;border-color:#c0a000;color:#806000;}
 .pv-acc-cnt{font-size:8pt;opacity:.75;}
- 
+
 /* 미리보기: 반복오류 단어 강조 (원본 열) */
 .pw-repeat{
   background:#f4cccc !important;
@@ -485,7 +229,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
   color:#990000 !important;
   font-weight:700;
 }
- 
+
 /* Chapter */
 .chapter-section{margin-bottom:20px;}
 .mode-row{display:flex;gap:8px;margin-bottom:10px;}
@@ -504,7 +248,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .preview-chip{background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:2px 8px;font-size:11px;color:var(--accent);}
 .preview-snip{font-size:12px;color:var(--text-muted);line-height:1.5;}
 .preview-empty{font-size:12px;color:var(--text-dim);}
- 
+
 /* 원본 텍스트 카드 */
 .input-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:10px;}
 .input-card-header{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface2);}
@@ -512,7 +256,7 @@ h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
 .card-title{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);}
 textarea{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:300;line-height:1.7;padding:14px;resize:none;min-height:90px;}
 textarea::placeholder{color:var(--text-dim);}
- 
+
 /* ── 입력방식 탭 ── */
 .input-mode-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:10px;}
 .input-mode-tabs{display:flex;border-bottom:1px solid var(--border);}
@@ -528,11 +272,11 @@ textarea::placeholder{color:var(--text-dim);}
 .input-tab.active-clova{color:var(--clova);border-bottom-color:var(--clova);background:var(--surface);}
 .tab-icon{display:block;font-size:18px;margin-bottom:2px;}
 .tab-label{font-size:11px;}
- 
+
 /* 탭 패널 */
 .tab-panel{display:none;padding:14px;}
 .tab-panel.active{display:block;}
- 
+
 /* 마이크 권한 버튼 */
 .btn-permission{
   width:100%;min-height:48px;border-radius:10px;
@@ -543,7 +287,7 @@ textarea::placeholder{color:var(--text-dim);}
   margin-bottom:10px;touch-action:manipulation;
 }
 .btn-permission.granted{border-color:var(--green-border);background:var(--green-bg);color:var(--green);}
- 
+
 /* 녹음 버튼 */
 .btn-rec-main{
   width:100%;min-height:56px;border-radius:12px;
@@ -559,7 +303,7 @@ textarea::placeholder{color:var(--text-dim);}
 @keyframes rpulse{0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,.4);}50%{box-shadow:0 0 0 12px rgba(248,113,113,0);}}
 .rec-dot{width:14px;height:14px;border-radius:50%;background:currentColor;flex-shrink:0;}
 .btn-rec-main.recording .rec-dot{animation:blink 1s infinite;}
- 
+
 /* 저장 버튼 */
 .save-row{display:flex;gap:8px;margin-top:8px;}
 .btn-save{
@@ -577,7 +321,7 @@ textarea::placeholder{color:var(--text-dim);}
 .btn-preview-wrap{display:flex;gap:8px;margin-bottom:8px;}
 .btn-preview-wrap .btn-save{flex:1;min-height:46px;border-radius:10px;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
- 
+
 /* 클로바노트 패널 */
 .clova-guide{
   background:var(--clova-bg);border:1px solid var(--clova-border);
@@ -605,7 +349,7 @@ textarea::placeholder{color:var(--text-dim);}
   touch-action:manipulation;
 }
 .btn-clova-apply:active{background:rgba(0,196,113,.25);}
- 
+
 /* 파일 불러오기 */
 .btn-file-upload{
   width:100%;min-height:52px;border-radius:10px;
@@ -627,7 +371,7 @@ textarea::placeholder{color:var(--text-dim);}
   margin:10px 0;font-size:11px;color:var(--text-dim);letter-spacing:.06em;
 }
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--border2);}
- 
+
 /* 녹음 텍스트 미리보기 */
 .recorded-preview{
   background:var(--surface2);border:1px solid var(--border);
@@ -637,7 +381,7 @@ textarea::placeholder{color:var(--text-dim);}
 .recorded-preview-label{font-size:10px;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
 .recorded-preview-text{font-size:14px;color:var(--text);}
 .recorded-preview-empty{font-size:13px;color:var(--text-dim);}
- 
+
 /* 분석/초기화 버튼 */
 .bottom-btns{margin-top:10px;}
 .btn-analyze{
@@ -659,12 +403,12 @@ textarea::placeholder{color:var(--text-dim);}
 }
 .btn-sm:active{background:var(--border);}
 .status-bar{text-align:center;font-size:13px;color:var(--text-dim);margin-top:10px;min-height:20px;padding:4px;}
- 
+
 /* 범례 */
 .legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;}
 .leg{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text-muted);}
 .leg-chip{display:inline-block;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:500;}
- 
+
 /* 결과 */
 .result-panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
 .empty-state{padding:36px 20px;text-align:center;color:var(--text-dim);font-size:13px;}
@@ -694,7 +438,7 @@ textarea::placeholder{color:var(--text-dim);}
 .progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim);margin-bottom:6px;}
 .progress-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
 .progress-fill{height:100%;border-radius:3px;transition:width .7s ease;}
- 
+
 /* ════════════ 프린트 스타일 (A4) ════════════ */
 @media print {
   /* A4 페이지 설정 */
@@ -702,13 +446,13 @@ textarea::placeholder{color:var(--text-dim);}
     size: A4 portrait;
     margin: 15mm 12mm 15mm 12mm;
   }
- 
+
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-scheme: light !important;
   }
- 
+
   html, body {
     background: #ffffff !important;
     color: #000000 !important;
@@ -718,7 +462,7 @@ textarea::placeholder{color:var(--text-dim);}
     margin: 0; padding: 0;
     color-scheme: light !important;
   }
- 
+
   /* 미리보기 모달 프린트 모드 */
   .preview-modal {
     display: block !important;
@@ -737,17 +481,17 @@ textarea::placeholder{color:var(--text-dim);}
     background: #ffffff !important;
     color: #000000 !important;
   }
- 
+
   /* 화면 UI 모두 숨기기 */
   .header, .chapter-section, .input-card, .input-mode-card,
   .recorded-preview, .bottom-btns, .legend,
   .result-panel .score-bar .stats-row,
   #banner, .btn-print,
   .page { display: none !important; }
- 
+
   #result-area { display: block !important; }
   .result-panel { border: none !important; border-radius: 0 !important; box-shadow: none !important; }
- 
+
   /* ── 인쇄 머리글 ── */
   .print-header {
     display: block !important;
@@ -777,7 +521,7 @@ textarea::placeholder{color:var(--text-dim);}
     background: #f9f9f9;
   }
   .print-legend-item { display: flex; align-items: center; gap: 2mm; }
- 
+
   /* ── 점수 영역 ── */
   .score-bar {
     display: block !important;
@@ -803,7 +547,7 @@ textarea::placeholder{color:var(--text-dim);}
   .score-grade { font-size: 13pt !important; font-weight: 700 !important; color: #000 !important; }
   .score-desc  { font-size: 9pt  !important; color: #444 !important; margin-top: 1mm; }
   .score-chapter { font-size: 8pt !important; color: #666 !important; margin-bottom: 1mm; }
- 
+
   /* ── 좌우 2단 비교 본문 ── */
   .diff-section {
     display: grid !important;
@@ -837,7 +581,7 @@ textarea::placeholder{color:var(--text-dim);}
     line-height: 1.9 !important;
     word-break: keep-all;
   }
- 
+
   /* ── 단어 표시 ── */
   .w { padding: 0.5mm 1.5mm !important; margin: 0.5mm 1mm !important; border-radius: 1mm !important; }
   .w-ok    { color: #000 !important; background: none !important; border: none !important; }
@@ -848,7 +592,7 @@ textarea::placeholder{color:var(--text-dim);}
   .w-extra { background: #ebebeb !important; border: 0.5pt solid #888 !important; color: #000 !important; }
   .w-sub   { background: #e0e0e0 !important; border: 0.5pt solid #888 !important; color: #000 !important; font-style: italic !important; }
   .w-ph    { color: #bbb !important; font-size: 8pt !important; }
- 
+
   /* ── 일치율 바 ── */
   .progress-wrap {
     padding: 2mm 4mm !important;
@@ -861,7 +605,7 @@ textarea::placeholder{color:var(--text-dim);}
   .progress-track { height: 3mm !important; background: #ddd !important; border-radius: 1.5mm !important; }
   .progress-fill  { border-radius: 1.5mm !important; }
 }
- 
+
 /* ════════════ 미리보기 모달 ════════════ */
 .preview-modal{
   display:none;position:fixed;inset:0;z-index:9999;
@@ -885,7 +629,7 @@ textarea::placeholder{color:var(--text-dim);}
 }
 .preview-toolbar-btn.print{background:#7c6aff;color:#fff;}
 .preview-toolbar-btn.close{background:#333;color:#ccc;}
- 
+
 /* A4 용지 */
 .preview-a4{
   width:210mm;min-height:297mm;
@@ -914,7 +658,7 @@ textarea::placeholder{color:var(--text-dim);}
     padding:12mm 10mm;
   }
 }
- 
+
 /* 미리보기 머리글 */
 .pv-header{border-bottom:2pt solid #000;padding-bottom:3mm;margin-bottom:3mm;}
 .pv-title{font-size:14pt;font-weight:700;margin-bottom:1.5mm;}
@@ -926,7 +670,7 @@ textarea::placeholder{color:var(--text-dim);}
   border-radius:1mm;background:#f9f9f9;
 }
 .pv-legend-item{display:flex;align-items:center;gap:1.5mm;}
- 
+
 /* 2단 비교 */
 .pv-subtitle{font-size:10pt;color:#444;margin-bottom:1mm;}
 /* 표 형식 */
@@ -961,7 +705,7 @@ textarea::placeholder{color:var(--text-dim);}
   display:inline-block;border-radius:3px;
   padding:0 4px;font-size:8pt;
 }
- 
+
 /* 미리보기 단어 색상 */
 .pw{display:inline-block;border-radius:3px;padding:0 4px;margin:1px 2px;font-size:10pt;}
 .pw-ok{color:#000;}
@@ -969,7 +713,7 @@ textarea::placeholder{color:var(--text-dim);}
 .pw-extra{background:#f0f4ff;border:1px solid #4466ff;color:#0033cc;}
 .pw-sub{background:#f8f0ff;border:1px solid #8833cc;color:#6600aa;}
 .pw-ph{color:#bbb;font-size:8pt;}
- 
+
 /* 일치율 바 */
 .pv-progress-wrap{
   padding:2mm 4mm;border-top:0.5pt solid #ccc;
@@ -978,7 +722,7 @@ textarea::placeholder{color:var(--text-dim);}
 .pv-progress-label{display:flex;justify-content:space-between;font-size:8pt;color:#555;margin-bottom:1.5mm;}
 .pv-progress-track{height:3mm;background:#ddd;border-radius:1.5mm;overflow:hidden;}
 .pv-progress-fill{height:100%;border-radius:1.5mm;}
- 
+
 /* ── 녹음 방식 토글 스위치 ── */
 .rec-mode-row{
   display:flex;align-items:center;justify-content:space-between;
@@ -1015,7 +759,7 @@ textarea::placeholder{color:var(--text-dim);}
 }
 .rec-mode-panel{display:none;}
 .rec-mode-panel.active{display:block;}
- 
+
 /* ════ Whisper API ════ */
 .whisper-section{
   margin-top:10px;padding:12px 14px;
@@ -1052,7 +796,7 @@ textarea::placeholder{color:var(--text-dim);}
 .btn-whisper-transcribe.loading{animation:rpulse 1.5s ease-in-out infinite;}
 .whisper-status{font-size:12px;color:var(--text-dim);text-align:center;margin-top:6px;min-height:16px;}
 .whisper-key-saved{font-size:11px;color:var(--green);margin-top:4px;}
- 
+
 /* ── STT 실패 말주머니 ── */
 .stt-bubble{
   display:none;
@@ -1088,7 +832,7 @@ textarea::placeholder{color:var(--text-dim);}
 </head>
 <body>
 <div class="page">
- 
+
   <div class="header">
     <div class="tag">전도폭발훈련 · 전문 구두점검</div>
     <h1>전문 구두 점검</h1>
@@ -1106,9 +850,9 @@ textarea::placeholder{color:var(--text-dim);}
       <span id="version-tag" style="font-size:10px;color:var(--text-dim);letter-spacing:.04em;"></span>
     </div>
   </div>
- 
+
   <div id="banner" class="banner"></div>
- 
+
   <!-- 사용자 이름 입력 -->
   <div class="user-card">
     <div class="user-card-header">
@@ -1117,7 +861,7 @@ textarea::placeholder{color:var(--text-dim);}
     </div>
     <input type="text" class="user-input" id="user-name" placeholder="이름을 입력하세요 (예: 홍길동)" autocomplete="off">
   </div>
- 
+
   <!-- 관리자 설정 모달 -->
   <div class="admin-modal" id="admin-modal">
     <div class="admin-box">
@@ -1174,13 +918,13 @@ textarea::placeholder{color:var(--text-dim);}
       </div>
     </div>
   </div>
- 
+
   <!-- 로그 버튼 -->
   <div class="log-row">
     <button class="btn-log" id="btn-log-view">📋 점검 기록 보기</button>
     <button class="btn-log accent" id="btn-log-csv">⬇ CSV 내보내기</button>
   </div>
- 
+
   <!-- 챕터 선택 -->
   <div class="chapter-section">
     <div class="slabel">원본 챕터 선택</div>
@@ -1193,7 +937,7 @@ textarea::placeholder{color:var(--text-dim);}
       <div class="preview-empty">챕터를 선택하면 원본이 자동으로 설정됩니다</div>
     </div>
   </div>
- 
+
   <!-- 원본 텍스트 -->
   <div class="input-card">
     <div class="input-card-header">
@@ -1202,7 +946,7 @@ textarea::placeholder{color:var(--text-dim);}
     </div>
     <textarea id="original" rows="4" placeholder="챕터 선택 시 자동 입력됩니다. 직접 수정도 가능합니다."></textarea>
   </div>
- 
+
   <!-- ── 입력방식 탭 카드 ── -->
   <div class="input-mode-card">
     <div class="input-mode-tabs">
@@ -1215,10 +959,10 @@ textarea::placeholder{color:var(--text-dim);}
         <span class="tab-label">클로바노트 붙여넣기</span>
       </button>
     </div>
- 
+
     <!-- 마이크 패널 -->
     <div class="tab-panel active" id="panel-mic">
- 
+
       <!-- ① 방식 선택 토글 스위치 -->
       <div class="rec-mode-row">
         <div class="rec-mode-label">
@@ -1236,7 +980,7 @@ textarea::placeholder{color:var(--text-dim);}
           <span class="toggle-text stt" id="toggle-lbl-stt">STT</span>
         </div>
       </div>
- 
+
       <!-- ② 마이크 권한 -->
       <button class="btn-permission" id="btn-permission">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1247,13 +991,13 @@ textarea::placeholder{color:var(--text-dim);}
         </svg>
         <span id="perm-label">② 마이크 권한 허용 (먼저 누르세요)</span>
       </button>
- 
+
       <!-- ③ 녹음 시작 -->
       <button class="btn-rec-main" id="btn-rec">
         <span class="rec-dot"></span>
         <span id="rec-label">③ 녹음 시작</span>
       </button>
- 
+
       <!-- ④ 저장 -->
       <div class="save-row">
         <button class="btn-save" id="btn-save-audio" disabled style="flex:1;">
@@ -1263,7 +1007,7 @@ textarea::placeholder{color:var(--text-dim);}
           ④ 음성 저장
         </button>
       </div>
- 
+
       <!-- Whisper API 패널 -->
       <div class="rec-mode-panel" id="panel-rec-api">
         <div class="whisper-section">
@@ -1286,7 +1030,7 @@ textarea::placeholder{color:var(--text-dim);}
           <div class="whisper-status" id="whisper-status"></div>
         </div>
       </div>
- 
+
       <!-- STT 패널 -->
       <div class="rec-mode-panel active" id="panel-rec-stt">
         <div class="whisper-section" style="border-color:var(--red-border);background:var(--red-bg);">
@@ -1307,9 +1051,9 @@ textarea::placeholder{color:var(--text-dim);}
           </div>
         </div>
       </div>
- 
+
     </div>
- 
+
     <!-- 클로바노트 패널 -->
     <div class="tab-panel" id="panel-clova">
       <div class="clova-guide">
@@ -1321,7 +1065,7 @@ textarea::placeholder{color:var(--text-dim);}
           <li>적용 버튼 누르기</li>
         </ol>
       </div>
- 
+
       <!-- 방법A: 파일 불러오기 -->
       <input type="file" id="clova-file-input" accept=".txt,.text" style="display:none;">
       <button class="btn-file-upload" id="btn-file-upload">
@@ -1334,9 +1078,9 @@ textarea::placeholder{color:var(--text-dim);}
         📂 파일 불러오기 (.txt)
       </button>
       <div class="file-name-tag" id="file-name-tag"></div>
- 
+
       <div class="divider-or">OR</div>
- 
+
       <!-- 방법B: 직접 붙여넣기 -->
       <textarea class="clova-paste-area" id="clova-paste"
         placeholder="클로바노트에서 복사한 텍스트를 여기에 붙여넣으세요...
@@ -1349,13 +1093,13 @@ textarea::placeholder{color:var(--text-dim);}
       </button>
     </div>
   </div>
- 
+
   <!-- 현재 녹음 텍스트 미리보기 -->
   <div class="recorded-preview" id="recorded-preview">
     <div class="recorded-preview-label">현재 입력된 녹음 텍스트</div>
     <div class="recorded-preview-empty" id="recorded-preview-text">아직 입력된 내용이 없습니다</div>
   </div>
- 
+
   <!-- 분석 / 초기화 -->
   <div class="bottom-btns">
     <button class="btn-analyze" id="btn-analyze">
@@ -1387,7 +1131,7 @@ textarea::placeholder{color:var(--text-dim);}
     </div>
     <div class="status-bar" id="status">마이크 또는 클로바노트로 텍스트를 입력하세요</div>
   </div>
- 
+
   <!-- 범례 -->
   <div class="legend" style="margin-top:14px;">
     <div class="leg"><span class="leg-chip" style="background:rgba(255,255,255,.07);color:#e8eaf0;border:1px solid rgba(255,255,255,.12);">단어</span>일치</div>
@@ -1395,13 +1139,13 @@ textarea::placeholder{color:var(--text-dim);}
     <div class="leg"><span class="leg-chip" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);">단어</span>추가</div>
     <div class="leg"><span class="leg-chip" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);">단어</span>대체</div>
   </div>
- 
+
   <div id="result-area">
     <div class="result-panel"><div class="empty-state">비교 분석 결과가 여기에 표시됩니다</div></div>
   </div>
- 
+
 </div>
- 
+
 <!-- ════ 미리보기 모달 ════ -->
 <div class="preview-modal" id="preview-modal">
   <div class="preview-toolbar">
@@ -1413,7 +1157,7 @@ textarea::placeholder{color:var(--text-dim);}
   </div>
   <div class="preview-a4" id="preview-a4-content"></div>
 </div>
- 
+
 <!-- ════ 로그 모달 ════ -->
 <div class="log-modal" id="log-modal">
   <div class="log-box">
@@ -1431,7 +1175,7 @@ textarea::placeholder{color:var(--text-dim);}
     </div>
   </div>
 </div>
- 
+
 <!-- ════ 오류 분석 모달 ════ -->
 <div class="log-modal" id="analysis-modal">
   <div class="log-box" style="max-width:520px;">
@@ -1455,7 +1199,7 @@ textarea::placeholder{color:var(--text-dim);}
     </div>
   </div>
 </div>
- 
+
 <script>
 /* ════════════ 챕터 데이터 ════════════ */
 const CHAPTERS = [
@@ -1476,7 +1220,7 @@ const CHAPTERS = [
   { id:8, num:'8장', title:'즉석양육',
     text:`오늘 선생님이 예수 그리스도를 믿고 영생을 얻어 하나님의 자녀가 되신 것을 축하드립니다. 감사합니다. 오늘이 제게는 매우 특별한 날이 되었습니다. 이것은 선생님께 드리려고 가져온 책인데요. 여기에는 제가 방금 말씀드린 내용이 간단히 요약되어 있고 또한 선생님의 믿음이 성장하는 데 도움이 될 내용이 있습니다. 그래요 먼저 여기 나의 결정을 읽어주시겠습니까? 예 네 감사합니다. 이것이 오늘 선생님의 결정이시죠? 네 여기에 오늘 날짜를 쓰시고 선생님이 직접 서명해 주시겠어요? 네 그렇게 하겠습니다. 저도 증인으로서 서명하겠습니다. 그리고 제 연락처도 적어드리겠습니다. 신앙생활에 도움이 필요할 때는 언제든 연락 주십시오. 잘 도와주시면 고맙겠습니다. 선생님 아기가 태어나면 잘 자라야 부모의 마음이 기쁜 것처럼 선생님도 지금 영적으로 갓 태어난 생명과 같기 때문에 하나님은 선생님의 믿음이 성장하기를 원하십니다. 여기에 믿음이 잘 자라는 데 도움이 되는 신앙 성장의 5가지 방안이 적혀 있는데 같이 보시지요. 네 그렇게 하겠습니다. 여기 진한 글씨를 읽어주시겠어요. 첫째 성경 성경 요한복음을 하루에 한 장씩 읽으십시오. 성경은 영혼의 양식입니다. 우리가 밥을 잘 먹어야 몸이 건강하게 되듯이 하나님의 말씀을 잘 읽어야 우리의 영혼이 건강해질 수 있지요. 제가 요한복음을 한 권 드리고 가겠습니다. 하루에 한 장씩 읽어보세요. 괜찮으시면 제가 일주일 후 다시 찾아뵙고 싶은데요. 그때 질문이 있으시면 도와드리겠습니다. 네 그렇게 해 주세요. 둘째 기도 매일 기도 시간을 정해놓고 하나님과 교제하십시오. 기도는 영혼의 호흡입니다. 하나님의 자녀는 기도를 통해 하나님과 교제할 수 있어요. 이렇게 하시면 기도를 쉽게 배울 수 있습니다. 저와 같이 두 손을 모아보세요. 첫째 손가락 하나님 아버지 맨 먼저 기도할 때 제일 중요한 것은 기도의 대상입니다. 하나님이 이제는 선생님의 영적 아버지가 되십니다. 그래서 먼저 하나님 아버지라고 부르시는 겁니다. 둘째 손가락 감사합니다. 하나님께서는 감사를 기뻐하십니다. 영생의 선물을 주신 것도 감사하고 건강 주신 것도 감사하고 감사한 일들을 말씀드리면 됩니다. 셋째 손가락 용서해 주세요. 하나님께서는 우리의 잘못을 용서해 주시기를 원하십니다. 실수하고 잘못한 것을 하나님께 다 용서해 달라고 말씀드리세요. 넷째 손가락 도와주세요. 하나님께서는 우리를 도와주시기를 원하십니다. 우리 연약한 인생은 하나님의 도우심 없이는 살 수가 없습니다. 필요한 것을 다 말씀하시면 하나님께서 들어주십니다. 다섯째 손가락. 예수님의 이름으로 기도드립니다. 아멘 예수님의 이름으로 기도하면 응답해 주시겠다고 약속하셨습니다. 아멘은 동의합니다. 또는 기도한 대로 이루어지기를 원합니다라는 뜻입니다. 선생님도 이렇게 기도하실 수 있겠지요? 네 다시 한 번 해볼까요? 하나님 아버지 감사합니다. 용서해 주세요. 도와주세요. 예수님의 이름으로 기도드립니다. 아멘 참 잘하셨습니다. 감사합니다. 셋째 예배 교회에 정기적으로 출석하여 예배를 드리십시오. 예배란 구원받은 성도가 함께 모여서 하나님을 찬양하고 경배드리는 것입니다. 선생님 이번 주일은 선생님과 오전 11시 예배를 함께 드리고 싶어요. 괜찮으시다면 제가 10시 30분에 댁 앞으로 모시러 오겠습니다. 네 그렇게 도와주시면 참 고맙겠습니다. 주일 아침에 기다리겠습니다. 넷째 교재 믿음 안에서 성장하도록 도와줄 그리스도인들과 교제하십시오. 선생님 교재란 믿는 그리스도인들과의 사귐을 뜻합니다. 믿음의 교재 역시 매우 중요합니다. 그래서 우리 교회에서는 선생님처럼 처음 나오신 분들을 위해서 새 가족 모임을 운영하고 있어요. 원하신다면 이번 주부터 참여하실 수 있도록 제가 안내하겠습니다. 이런 모임에 참여하면 믿음이 잘 자랄 수 있습니다. 예 그렇게 하겠습니다. 마지막으로 전도 예수 그리스도를 알지 못하는 사람들에게 소개하십시오. 전도를 하셔야 우리의 신앙이 건강하게 성장합니다. 전도란 내가 받은 구원의 기쁜 소식을 다른 사람과 함께 나누는 것입니다. 하나님의 구원 역사는 믿는 사람이 안 믿는 사람에게 또 예수님을 아는 사람이 모르는 사람에게 전함으로 이루어지고 있습니다. 혹시 오늘 들으신 기쁜 소식을 전하고 싶은 분이 있으십니까? 친한 친구가 있는데 어떻게 전해야 할지 잘 모르겠어요. 전하는 것이 어려우시면 저희가 도와드릴게요. 그분 외에도 이 소식을 전하고 싶은 분이 더 있으면 저희에게 연락 주세요. 저희가 방문해서 이 소식을 전해드리겠습니다. 알겠습니다. 네 그러면 이번 주일 오전 10시 30분에 댁 앞으로 모시러 오겠습니다. 정말 감사합니다. 선생님 선생님과 함께 제가 기도드리고 이제 자리에서 일어나겠습니다. 혹시 함께 기도하실 제목이 있으신지요? 온 가족이 건강했으면 좋겠습니다. 그럼 제가 기도하겠습니다. 하나님 아버지 오늘 선생님과 귀한 교제를 나누게 해 주셔서 감사합니다. 앞으로 선생님의 믿음이 건강하게 자라도록 도와주세요. 전도 대상자의 기도 제목을 위해서 기도한다. 이번 주일에 만나서 함께 예배드릴 때 기쁨이 넘치게 해 주세요. 예수님의 이름으로 기도드립니다. 아멘 아멘 이렇게 오랜 시간 저희 이야기를 끝까지 들어주셔서 감사합니다. 안녕히 계십시오. 정말 감사합니다. 안녕히 가세요.` }
 ];
- 
+
 /* ════════════ 상태 ════════════ */
 let mode = 'single', selected = [];
 let recognition = null, isRecording = false;
@@ -1491,7 +1235,7 @@ let audioExt  = 'webm';
 let lastPreviewData = null;
 let whisperApiKey = (function(){ try{ return localStorage.getItem('whisper_api_key') || ''; }catch(e){ return ''; } })();
 let recMode = 'stt'; // 'api' | 'stt'
- 
+
 /* ════════════ 유틸 ════════════ */
 function setStatus(msg){ document.getElementById('status').textContent = msg; }
 function showBanner(msg, type){
@@ -1511,7 +1255,7 @@ function updateRecordedPreview(){
     el.textContent = recordedText.slice(0,100) + (recordedText.length > 100 ? '…' : '');
   }
 }
- 
+
 /* ════════════ 탭 전환 ════════════ */
 document.getElementById('tab-mic').addEventListener('click', function(){
   this.className = 'input-tab active-mic';
@@ -1526,7 +1270,7 @@ document.getElementById('tab-clova').addEventListener('click', function(){
   document.getElementById('panel-mic').classList.remove('active');
   setStatus('클로바노트 파일 불러오기 또는 텍스트 붙여넣기 후 적용하세요');
 });
- 
+
 /* ════════════ 챕터 ════════════ */
 function renderChapters(){
   const grid = document.getElementById('chapters-grid');
@@ -1575,7 +1319,7 @@ function updateChapterUI(){
   box.innerHTML = `<div class="preview-chips">${chips}</div><div class="preview-snip">${combined.slice(0,80)}…</div>`;
   document.getElementById('original').value = combined;
 }
- 
+
 /* ════════════ 마이크 권한 ════════════ */
 document.getElementById('btn-permission').addEventListener('click', async function(){
   try {
@@ -1592,7 +1336,7 @@ document.getElementById('btn-permission').addEventListener('click', async functi
     setStatus('마이크 권한 거부됨');
   }
 });
- 
+
 /* ════════════ 마이크 녹음 ════════════ */
 document.getElementById('btn-rec').addEventListener('click', function(){
   if(!micGranted){
@@ -1601,7 +1345,7 @@ document.getElementById('btn-rec').addEventListener('click', function(){
   }
   isRecording ? stopRec() : startRec();
 });
- 
+
 function startRec(){
   hideBanner();
   audioChunks = []; audioBlob = null; audioMime = ''; audioExt = 'webm';
@@ -1611,7 +1355,7 @@ function startRec(){
   document.getElementById('btn-print').classList.remove('ready');
   document.getElementById('btn-preview').disabled = true;
   document.getElementById('btn-preview').classList.remove('ready');
- 
+
   // ── Whisper 모드: MediaRecorder 만 시작 (STT 없이 음성파일만 녹음) ──
   if(recMode === 'api'){
     isRecording = true;
@@ -1621,7 +1365,7 @@ function startRec(){
     _startMediaRecorder();
     return;
   }
- 
+
   // ── STT 모드: STT 먼저 시작, onstart 후 MediaRecorder 시작 ──
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if(!SR){ showBanner('⚠ Chrome 브라우저를 사용해 주세요.', 'err'); return; }
@@ -1632,20 +1376,20 @@ function startRec(){
   recognition.maxAlternatives = 1;
   let base = transcript;
   let mediaStarted = false;
- 
+
   recognition.onstart = () => {
     isRecording = true;
     document.getElementById('btn-rec').classList.add('recording');
     document.getElementById('rec-label').textContent = '녹음 중지 (탭하여 중지)';
     setStatus('● 녹음 중... 말씀하세요');
- 
+
     // STT 가 마이크를 잡은 후 MediaRecorder 시작 (한 번만)
     if(!mediaStarted){
       mediaStarted = true;
       _startMediaRecorder();
     }
   };
- 
+
   recognition.onresult = (e) => {
     let interim='', final=base;
     for(let i=e.resultIndex; i<e.results.length; i++){
@@ -1661,20 +1405,20 @@ function startRec(){
       if(el) el.textContent = transcript + (interim ? ' ...' + interim : '');
     }
   };
- 
+
   recognition.onerror = (e) => {
     if(e.error==='no-speech' || e.error==='audio-capture') return;
     if(e.error==='not-allowed'){ showBanner('⚠ 마이크 권한이 차단되었습니다.','err'); stopRec(); return; }
     setStatus('인식 오류: '+e.error+' — 재시도 중');
   };
- 
+
   recognition.onend = () => {
     if(isRecording){ base=transcript; try{ recognition.start(); }catch(e){} }
   };
- 
+
   try { recognition.start(); } catch(e){ setStatus('녹음 시작 실패: '+e.message); }
 }
- 
+
 function _startMediaRecorder(){
   const _candidates = [
     { mime: 'audio/mp4',              ext: 'm4a'  },
@@ -1711,7 +1455,7 @@ function _startMediaRecorder(){
     else setStatus('● 녹음 중... (음성파일 저장 불가, 텍스트만 저장됩니다)');
   });
 }
- 
+
 function stopRec(){
   isRecording = false;
   if(recognition){ recognition.onend=null; try{ recognition.stop(); }catch(e){} }
@@ -1730,7 +1474,7 @@ function stopRec(){
     setStatus('녹음 완료 ✓ — ④ 음성저장 버튼을 누르세요');
   }
 }
- 
+
 /* ════════════ 공통 저장 함수 ════════════ */
 function makeTimestamp(){
   const now = new Date();
@@ -1750,12 +1494,12 @@ function saveTxtFile(ts, text){
   document.body.removeChild(a); URL.revokeObjectURL(url);
   return true;
 }
- 
+
 /* ════════════ 음성 저장 ════════════ */
 document.getElementById('btn-save-audio').addEventListener('click', function(){
   const ts = makeTimestamp();
   const audioFilename = '녹음_' + ts + '.' + (audioExt || 'webm');
- 
+
   // 음성 없고 텍스트만 있는 경우 (음성 저장 불가 환경)
   // STT 모드는 stopRec()에서 이미 저장됐으므로 안내만 표시
   if(!audioBlob){
@@ -1766,7 +1510,7 @@ document.getElementById('btn-save-audio').addEventListener('click', function(){
     setStatus('텍스트 파일이 저장되었습니다: 녹음_' + ts + '.txt');
     return;
   }
- 
+
   // ── Whisper 모드: 음성만 저장 후 Whisper 추출 안내 ──
   if(recMode === 'api'){
     const url = URL.createObjectURL(audioBlob);
@@ -1778,7 +1522,7 @@ document.getElementById('btn-save-audio').addEventListener('click', function(){
     showBanner('✓ 음성(.'+audioExt+') 저장 완료!<br>이제 아래 <strong>⑤ 텍스트 추출(Whisper)</strong> 버튼을 눌러 텍스트를 추출하세요.', 'ok');
     return;
   }
- 
+
   // ── STT 모드: txt 먼저 저장 → 1초 후 오디오 저장 (브라우저 연속 다운로드 차단 방지) ──
   const savedText = transcript.trim() || recordedText.trim();
   if(!savedText){
@@ -1806,12 +1550,12 @@ document.getElementById('btn-save-audio').addEventListener('click', function(){
     showBanner('✓ 녹음_' + ts + '.txt 및 녹음_' + ts + '.' + (audioExt||'webm') + ' 저장 완료!', 'ok');
   }, 1000);
 });
- 
+
 /* ════════════ 클로바노트 파일 불러오기 ════════════ */
 document.getElementById('btn-file-upload').addEventListener('click', function(){
   document.getElementById('clova-file-input').click();
 });
- 
+
 document.getElementById('clova-file-input').addEventListener('change', function(){
   const file = this.files[0];
   if(!file) return;
@@ -1855,14 +1599,14 @@ document.getElementById('clova-file-input').addEventListener('change', function(
   reader.readAsText(file, 'UTF-8');
   this.value = '';
 });
- 
+
 /* ════════════ 클로바노트 텍스트 적용 ════════════ */
 document.getElementById('btn-clova-apply').addEventListener('click', function(){
   const pasted = document.getElementById('clova-paste').value.trim();
   if(!pasted){ showBanner('⚠ 내용이 없습니다. 파일을 불러오거나 텍스트를 붙여넣으세요.', 'warn'); return; }
   // 1) BOM 제거 및 줄 분리
   let lines = pasted.replace(/^\uFEFF/, '').split(/\r?\n/);
- 
+
   // 2) 앞부분 정리: 첫 3줄 제거 후 빈줄 건너뛰고 첫 본문 찾기
   lines = lines.slice(3); // 앞 3줄 삭제
   // 빈줄 이후 첫 내용부터 시작 (참석자 N 같은 헤더 포함 가능)
@@ -1871,10 +1615,10 @@ document.getElementById('btn-clova-apply').addEventListener('click', function(){
     if(lines[i].trim() === ''){ startIdx = i + 1; } else { break; }
   }
   lines = lines.slice(startIdx);
- 
+
   // 3) 참석자 N 형태 헤더 줄 제거
   lines = lines.filter(l => !/^참석자\s*\d+\s*$/.test(l.trim()));
- 
+
   // 4) 마지막 영문(URL, 영문만으로 구성된 줄) 제거
   while(lines.length > 0){
     const last = lines[lines.length - 1].trim();
@@ -1882,7 +1626,7 @@ document.getElementById('btn-clova-apply').addEventListener('click', function(){
       lines.pop();
     } else { break; }
   }
- 
+
   // 5) 타임스탬프·화자 라벨 제거 후 합치기
   let cleaned = lines.join(' ')
     .replace(/\[\d{2}:\d{2}(:\d{2})?\]/g, '')
@@ -1898,7 +1642,7 @@ document.getElementById('btn-clova-apply').addEventListener('click', function(){
   showBanner('✓ 텍스트가 적용되었습니다. 비교 분석 버튼을 누르세요.', 'ok');
   setStatus('클로바노트 텍스트 적용 완료 ✓');
 });
- 
+
 /* ════════════ 지우기 / 초기화 ════════════ */
 document.getElementById('btn-clear-rec').addEventListener('click', function(){
   if(isRecording) stopRec();
@@ -1948,10 +1692,10 @@ document.getElementById('btn-clear-all').addEventListener('click', function(){
   setStatus('초기화 완료');
 });
 document.getElementById('btn-analyze').addEventListener('click', compare);
- 
+
 /* ════════════ 비교 로직 ════════════ */
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
- 
+
 // ── 숫자 → 한글 변환 ──
 // 고유어 변환 규칙: 숫자+단위 조합별 특수 처리
 const NATIVE_NUM = {
@@ -1962,12 +1706,12 @@ const NATIVE_NUM = {
 };
 // 고유어를 사용하는 단위
 const NATIVE_UNITS = ['번','개','명','살','가지','마리','그루','채','권','잔','병','벌','켤레','쌍'];
- 
+
 function numToKor(str){
   const units0 = ['','일','이','삼','사','오','육','칠','팔','구'];
   const units1 = ['','십','백','천'];
   const units2 = ['','만','억','조'];
- 
+
   function convertGroup(n){
     // n: 0~9999 정수
     if(n === 0) return '';
@@ -1981,7 +1725,7 @@ function numToKor(str){
     });
     return result;
   }
- 
+
   // 숫자+단위 조합: 고유어 단위면 고유어 숫자로, 아니면 한자어로
   str = str.replace(/(\d+)([가-힣]+)/g, function(_, num, unit){
     const baseUnit = unit.charAt(0);
@@ -2017,7 +1761,7 @@ function numToKor(str){
     return result || '영';
   });
 }
- 
+
 function _numKor(num){
   if(num === 0) return '영';
   const units0 = ['','일','이','삼','사','오','육','칠','팔','구'];
@@ -2036,13 +1780,13 @@ function _numKor(num){
   gs.forEach((g,i)=>{ const o=gs.length-1-i; if(!g)return; r+=cg(g)+gn[o]; });
   return r;
 }
- 
+
 // 구두점 제거 공통 함수
 function stripPunct(s){
   return s.replace(/[.,?!，。？！“”‘’「」『』()（）[\]]/g,'')
           .replace(/\s+/g,' ').trim().toLowerCase();
 }
- 
+
 function splitSentences(raw){
   // 문장 부호 뒤 공백/줄끝을 기준으로 문장 분리
   const sents = raw
@@ -2057,11 +1801,11 @@ function splitSentences(raw){
   });
   return { wordList, wordSentIdx };
 }
- 
+
 function normWords(s){
   return stripPunct(s).split(' ').filter(Boolean);
 }
- 
+
 function lcsOps(a,b){
   const m=a.length, n=b.length;
   const dp=Array.from({length:m+1},()=>new Array(n+1).fill(0));
@@ -2075,7 +1819,7 @@ function lcsOps(a,b){
   }
   return ops;
 }
- 
+
 function mergeOps(ops){
   const merged=[];
   for(let k=0;k<ops.length;){
@@ -2085,7 +1829,7 @@ function mergeOps(ops){
   }
   return merged;
 }
- 
+
 function compare(){
   // stopRec() 전에 먼저 현재 텍스트 캡처 (mediaRecorder.onstop 은 비동기이므로)
   if(isRecording){
@@ -2098,15 +1842,15 @@ function compare(){
   const recRaw  = recordedText.trim();
   if(!origRaw){ alert('원본 텍스트를 선택하거나 입력해 주세요.'); return; }
   if(!recRaw) { alert('녹음 텍스트가 없습니다.\n마이크 녹음 또는 클로바노트 파일/붙여넣기를 먼저 해주세요.'); return; }
- 
+
   const {wordList:origWords, wordSentIdx} = splitSentences(origRaw);
   const recWords = normWords(recRaw);
   const ops = mergeOps(lcsOps(origWords, recWords));
- 
+
   let correct=0, missing=0, extra=0, sub=0;
   ops.forEach(o=>{ if(o.t==='ok')correct++; else if(o.t==='miss')missing++; else if(o.t==='extra')extra++; else sub++; });
   const accuracy = Math.round(correct/Math.max(origWords.length,1)*100);
- 
+
   const BR='<br style="display:block;margin:5px 0 1px;">';
   let origPtr=0, lastSI=-1, lH='', rH='';
   ops.forEach(o=>{
@@ -2120,7 +1864,7 @@ function compare(){
     else if(o.t==='extra'){ lH+=`<span class="w w-ph">—</span>`;              rH+=`<span class="w w-extra">${esc(o.bw)}</span>`; }
     else                  { lH+=`<span class="w w-sub">${esc(o.aw)}</span>`;  rH+=`<span class="w w-sub">${esc(o.bw)}</span>`; }
   });
- 
+
   let grade,sc,gd;
   if     (accuracy>=95){grade='완벽';sc='#4ade80';gd='거의 완벽하게 일치합니다!';}
   else if(accuracy>=80){grade='우수';sc='#60a5fa';gd='대부분 일치합니다.';}
@@ -2130,7 +1874,7 @@ function compare(){
   const chInfo=selected.length>0
     ? selected.map(id=>{const c=CHAPTERS.find(x=>x.id===id);return c.num+' '+c.title;}).join(' + ')
     : '직접 입력';
- 
+
   document.getElementById('result-area').innerHTML=`
     <div class="result-panel">
       <div class="score-bar">
@@ -2174,26 +1918,26 @@ function compare(){
         <div class="progress-track"><div class="progress-fill" style="width:${accuracy}%;background:${bc};"></div></div>
       </div>
     </div>`;
- 
+
   // 프린트 / 미리보기 버튼 활성화
   const pb = document.getElementById('btn-print');
   pb.disabled = false; pb.classList.add('ready');
   const pvb = document.getElementById('btn-preview');
   pvb.disabled = false; pvb.classList.add('ready');
- 
+
   // 미리보기용 문장별 데이터 저장
   lastPreviewData = {
     lH, rH, accuracy, grade, sc, gd,
     correct, missing, extra, sub, bc, chInfo,
     origWords, recWords, ops, wordSentIdx
   };
- 
+
   setTimeout(()=>document.getElementById('result-area').scrollIntoView({behavior:'smooth',block:'start'}),150);
- 
+
   // ── 로그 저장 (ops 포함) ──
   saveLog(chInfo, accuracy, grade, ops, origWords);
 }
- 
+
 /* ════════════ 녹음 방식 토글 ════════════ */
 function applyRecMode(newMode){
   recMode = newMode;
@@ -2220,16 +1964,16 @@ function applyRecMode(newMode){
     ? 'Whisper API 방식 — ② 권한 → ③ 녹음 → ④ 음성저장 → ⑤ 텍스트추출 → 비교분석'
     : '실시간 STT 방식 — ② 권한 → ③ 녹음 → ④ 음성저장 → 비교분석 (STT 실패 시 클로바노트 탭 사용)');
 }
- 
+
 document.getElementById('rec-mode-toggle').addEventListener('change', function(){
   applyRecMode(this.checked ? 'stt' : 'api');
 });
- 
+
 // 초기 상태 적용 (기본: stt)
 applyRecMode('stt');
- 
+
 /* ════════════ Whisper API ════════════ */
- 
+
 // 저장된 키 자동 로드
 (function(){
   if(whisperApiKey){
@@ -2238,7 +1982,7 @@ applyRecMode('stt');
     document.getElementById('btn-whisper-transcribe').disabled = false;
   }
 })();
- 
+
 // API 키 저장
 document.getElementById('btn-whisper-key-save').addEventListener('click', function(){
   const key = document.getElementById('whisper-key-input').value.trim();
@@ -2253,37 +1997,37 @@ document.getElementById('btn-whisper-key-save').addEventListener('click', functi
   document.getElementById('btn-whisper-transcribe').disabled = false;
   showBanner('✓ API 키가 저장되었습니다. 녹음 후 텍스트 추출 버튼을 누르세요.', 'ok');
 });
- 
+
 // Whisper 텍스트 추출
 document.getElementById('btn-whisper-transcribe').addEventListener('click', async function(){
   if(!audioBlob){ alert('먼저 녹음을 완료해 주세요.\n녹음 시작 → 말하기 → 녹음 중지'); return; }
   if(!whisperApiKey){ alert('API 키를 먼저 입력하고 저장해 주세요.'); return; }
- 
+
   const btn = this;
   const statusEl = document.getElementById('whisper-status');
   btn.disabled = true;
   btn.classList.add('loading');
   document.getElementById('whisper-btn-label').textContent = '변환 중...';
   statusEl.textContent = '🤖 Whisper AI가 음성을 분석하고 있습니다...';
- 
+
   try {
     // audioBlob → File 객체로 변환
     const ext = audioExt || 'webm';
     const mimeMap = { m4a:'audio/mp4', webm:'audio/webm', ogg:'audio/ogg' };
     const mime = mimeMap[ext] || 'audio/webm';
     const audioFile = new File([audioBlob], '녹음.' + ext, { type: mime });
- 
+
     const formData = new FormData();
     formData.append('file', audioFile);
     formData.append('model', 'whisper-1');
     formData.append('language', 'ko'); // 한국어 고정
- 
+
     const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + whisperApiKey },
       body: formData
     });
- 
+
     if(!response.ok){
       const err = await response.json().catch(()=>({}));
       if(response.status === 401){
@@ -2294,25 +2038,25 @@ document.getElementById('btn-whisper-transcribe').addEventListener('click', asyn
         throw new Error((err.error && err.error.message) || 'API 오류: ' + response.status);
       }
     }
- 
+
     const data = await response.json();
     const text = data.text ? data.text.trim() : '';
- 
+
     if(!text){ throw new Error('텍스트 변환 결과가 없습니다. 다시 녹음해 주세요.'); }
- 
+
     // 결과 적용
     transcript = numToKor(text);
     recordedText = numToKor(text);
     updateRecordedPreview();
- 
+
     // 음성 저장 버튼 활성화 (텍스트 저장 포함)
     document.getElementById('btn-save-audio').disabled = false;
     document.getElementById('btn-save-audio').classList.add('ready');
- 
+
     statusEl.textContent = '✓ 변환 완료! ' + text.length + '자';
     showBanner('✓ Whisper 텍스트 추출 완료!<br>아래 <strong>비교 분석</strong> 버튼을 누르세요.', 'ok');
     setStatus('Whisper 변환 완료 ✓ — 비교 분석 버튼을 누르세요');
- 
+
   } catch(e) {
     statusEl.textContent = '⚠ ' + e.message;
     showBanner('⚠ ' + e.message, 'err');
@@ -2322,20 +2066,20 @@ document.getElementById('btn-whisper-transcribe').addEventListener('click', asyn
     document.getElementById('whisper-btn-label').textContent = '녹음 후 텍스트 추출 (Whisper)';
   }
 });
- 
+
 /* ════════════ 미리보기 ════════════ */
 function buildPreviewHTML(d){
   const now = new Date();
   const dateStr = now.getFullYear()+'.'
     +(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getDate().toString().padStart(2,'0')
     +' '+now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
- 
+
   // ── 문장별로 ops를 분리 ──
   // ops 를 wordSentIdx 기준으로 문장 그룹으로 묶기
   const sentGroups = []; // [{sentIdx, origWords:[], recWords:[], ops:[]}]
   let curSent = -1;
   let origPtr2 = 0;
- 
+
   d.ops.forEach(op => {
     let si = curSent;
     if(op.t !== 'extra'){
@@ -2355,7 +2099,7 @@ function buildPreviewHTML(d){
     if(sentGroups.length === 0) sentGroups.push({si:0, ops:[]});
     sentGroups[sentGroups.length-1].ops.push(op);
   });
- 
+
   // ── 문장별 HTML 생성 ──
   function wordHTML(op, side){
     if(op.t==='ok'){
@@ -2372,10 +2116,10 @@ function buildPreviewHTML(d){
       return `<span class="pw pw-sub">${esc(side==='l'?op.aw:op.bw)}</span>`;
     }
   }
- 
+
   // 문장에 오류가 있는지 확인
   function hasProblem(ops){ return ops.some(o=>o.t!=='ok'); }
- 
+
   let rowsHTML = '';
   sentGroups.forEach((sg, idx) => {
     const lWords = sg.ops.map(o => wordHTML(o,'l')).join(' ');
@@ -2397,7 +2141,7 @@ function buildPreviewHTML(d){
         </div>
       </div>`;
   });
- 
+
   return `
     <div style="background:#ffffff !important;color:#000 !important;color-scheme:light !important;min-height:100%;">
     <div class="pv-header">
@@ -2426,19 +2170,19 @@ function buildPreviewHTML(d){
     </div>
   `;
 }
- 
+
 document.getElementById('btn-preview').addEventListener('click', function(){
   if(!lastPreviewData){ alert('먼저 비교 분석을 실행해 주세요.'); return; }
   document.getElementById('preview-a4-content').innerHTML = buildPreviewHTML(lastPreviewData);
   document.getElementById('preview-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 });
- 
+
 document.getElementById('preview-close-btn').addEventListener('click', function(){
   document.getElementById('preview-modal').classList.remove('open');
   document.body.style.overflow = '';
 });
- 
+
 document.getElementById('preview-print-btn').addEventListener('click', function(){
   // 프린트 전 배경 흰색 강제 적용
   const modal = document.getElementById('preview-modal');
@@ -2461,7 +2205,7 @@ document.getElementById('preview-print-btn').addEventListener('click', function(
     }, 500);
   }, 300);
 });
- 
+
 // 모달 배경 탭으로 닫기
 document.getElementById('preview-modal').addEventListener('click', function(e){
   if(e.target === this){
@@ -2469,7 +2213,7 @@ document.getElementById('preview-modal').addEventListener('click', function(e){
     document.body.style.overflow = '';
   }
 });
- 
+
 /* ════════════ 초기화 ════════════ */
 /* 프린트 버튼 */
 document.getElementById('btn-print').addEventListener('click', function(){
@@ -2480,17 +2224,17 @@ document.getElementById('btn-print').addEventListener('click', function(){
   const now = new Date();
   const dateStr = now.getFullYear()+'.'+(now.getMonth()+1).toString().padStart(2,'0')+'.'+now.getDate().toString().padStart(2,'0')
     +' '+now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
- 
+
   // 점수 가져오기
   // innerHTML 재생성 후 안전하게 클래스 전체에서 첫 번째 요소 탐색
   const badgeEl = document.getElementById('result-area').querySelector('.score-badge');
   const gradeEl = document.getElementById('result-area').querySelector('.score-grade');
   const accuracy = badgeEl ? badgeEl.textContent : '';
   const gradeText = gradeEl ? gradeEl.textContent : '';
- 
+
   document.getElementById('print-title').textContent = '음성 텍스트 비교 결과 — ' + chInfo;
   document.getElementById('print-meta').textContent = '출력일시: ' + dateStr + '  |  일치율: ' + accuracy + ' (' + gradeText + ')';
- 
+
   const origBg2 = document.body.style.background;
   const origColor2 = document.body.style.color;
   document.body.style.background = '#ffffff';
@@ -2505,7 +2249,7 @@ document.getElementById('btn-print').addEventListener('click', function(){
     document.documentElement.style.colorScheme = '';
   }, 500);
 });
- 
+
 /* ════════════ 버전 타임 (한국 시간 자동) ════════════ */
 (function(){
   const now = new Date();
@@ -2517,23 +2261,23 @@ document.getElementById('btn-print').addEventListener('click', function(){
   const mi = String(kst.getUTCMinutes()).padStart(2,'0');
   document.getElementById('version-tag').textContent = 'v'+y+'.'+mo+'.'+d+' '+h+':'+mi;
 })();
- 
+
 /* ════════════ 로그 기능 ════════════ */
 const LOG_KEY      = 'cp1_inspect_log';
 const LOG_MODE_KEY = 'cp1_log_mode';
 const LOG_URL_KEY  = 'cp1_log_server_url';
 const ADMIN_KEY    = 'cp1_admin_auth'; // 인증 세션 (탭 닫으면 만료)
- 
+
 // ── 관리자 비밀번호 ──
 const ADMIN_PW = 'admin1234';
- 
+
 // ── 기본 서버 URL (관리자 설정에서 변경 가능) ──
 const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycbxOnpyq_sNUSsKb3IYCfznWxdStNwr9UJrBnC5l2oBTWgB9YSzzPMd_QVXqPsX2nwcN/exec';
- 
+
 let logMode     = (function(){ try{ return localStorage.getItem(LOG_MODE_KEY)||'server'; }catch(e){ return 'server'; } })();
 let serverUrl   = (function(){ try{ return localStorage.getItem(LOG_URL_KEY)||DEFAULT_GAS_URL; }catch(e){ return DEFAULT_GAS_URL; } })();
 let adminAuthed = sessionStorage.getItem(ADMIN_KEY) === '1'; // 탭 세션 동안만 유지
- 
+
 /* ── 관리자 모달 ── */
 function openAdminModal(){
   // 인증 여부에 따라 패널 분기
@@ -2554,12 +2298,12 @@ function openAdminModal(){
 function closeAdminModal(){
   document.getElementById('admin-modal').classList.remove('open');
 }
- 
+
 document.getElementById('admin-close').addEventListener('click', closeAdminModal);
 document.getElementById('admin-modal').addEventListener('click', function(e){
   if(e.target === this) closeAdminModal();
 });
- 
+
 document.getElementById('btn-admin-confirm').addEventListener('click', function(){
   const pw = document.getElementById('admin-pw-input').value;
   if(pw === ADMIN_PW){
@@ -2577,24 +2321,24 @@ document.getElementById('btn-admin-confirm').addEventListener('click', function(
     document.getElementById('admin-pw-input').focus();
   }
 });
- 
+
 // Enter 키 지원
 document.getElementById('admin-pw-input').addEventListener('keydown', function(e){
   if(e.key === 'Enter') document.getElementById('btn-admin-confirm').click();
 });
- 
+
 /* ── 자물쇠 버튼 클릭 ── */
 document.getElementById('btn-admin-lock').addEventListener('click', function(){
   openAdminModal();
 });
- 
+
 function showAdminUnlocked(){
   const lockBtn = document.getElementById('btn-admin-lock');
   lockBtn.textContent = '⚙️';
   lockBtn.classList.add('unlocked');
   applyLogMode(logMode);
 }
- 
+
 function lockAdmin(){
   adminAuthed = false;
   sessionStorage.removeItem(ADMIN_KEY);
@@ -2605,10 +2349,10 @@ function lockAdmin(){
   applyLogMode('test');
   closeAdminModal();
 }
- 
+
 // 관리자 잠금 버튼
 document.getElementById('btn-admin-logout').addEventListener('click', lockAdmin);
- 
+
 /* ── 모드 UI 적용 ── */
 function applyLogMode(mode){
   logMode = mode;
@@ -2622,7 +2366,7 @@ function applyLogMode(mode){
   if(isServer){ setDot('disconnected'); }
   else        { setDot('off'); }
 }
- 
+
 /* ── 초기 UI 세팅 ── */
 (function(){
   applyLogMode(logMode);
@@ -2631,11 +2375,11 @@ function applyLogMode(mode){
   // 세션 내 이미 인증된 경우 자물쇠 해제 상태로 복원
   if(adminAuthed) showAdminUnlocked();
 })();
- 
+
 document.getElementById('log-mode-toggle').addEventListener('change', function(){
   applyLogMode(this.checked ? 'server' : 'test');
 });
- 
+
 document.getElementById('btn-url-save').addEventListener('click', function(){
   const url = document.getElementById('server-url-input').value.trim();
   if(!url){ showServerStatus('err','⚠ URL을 입력해주세요'); return; }
@@ -2643,7 +2387,7 @@ document.getElementById('btn-url-save').addEventListener('click', function(){
   try{ localStorage.setItem(LOG_URL_KEY, url); }catch(e){}
   showServerStatus('ok','✓ 서버 URL이 저장되었습니다');
 });
- 
+
 document.getElementById('btn-url-test').addEventListener('click', async function(){
   const url = document.getElementById('server-url-input').value.trim();
   if(url && url !== serverUrl){
@@ -2652,7 +2396,7 @@ document.getElementById('btn-url-test').addEventListener('click', async function
   }
   await testServerConnection();
 });
- 
+
 function showServerStatus(type, msg){
   const el = document.getElementById('server-status');
   el.textContent = msg;
@@ -2660,7 +2404,7 @@ function showServerStatus(type, msg){
   el.style.display = 'block';
   if(type !== 'sending') setTimeout(()=>{ el.style.display='none'; }, 3000);
 }
- 
+
 /* ── localStorage 로그 ── */
 function getLogs(){
   try{ return JSON.parse(localStorage.getItem(LOG_KEY) || '[]'); }catch(e){ return []; }
@@ -2668,7 +2412,7 @@ function getLogs(){
 function saveLogs(arr){
   try{ localStorage.setItem(LOG_KEY, JSON.stringify(arr)); }catch(e){}
 }
- 
+
 /* ── 서버 연결 표시등 제어 ── */
 function setDot(state){
   const dot   = document.getElementById('server-dot');
@@ -2692,7 +2436,7 @@ function setDot(state){
     label.textContent = '연결 안됨';
   }
 }
- 
+
 /* ── Google Apps Script 전송 ── */
 async function sendToServer(entry){
   if(!serverUrl){ showServerStatus('err','⚠ 서버 URL을 먼저 설정해주세요'); setDot('disconnected'); return false; }
@@ -2714,7 +2458,7 @@ async function sendToServer(entry){
     return false;
   }
 }
- 
+
 /* ── 연결 테스트 ── */
 async function testServerConnection(){
   if(!serverUrl){ showServerStatus('err','⚠ URL을 먼저 입력하고 저장하세요'); return; }
@@ -2735,7 +2479,7 @@ async function testServerConnection(){
     setDot('disconnected');
   }
 }
- 
+
 /* ── 로그 저장 (모드 분기) ── */
 async function saveLog(chInfo, accuracy, grade, ops, origWords){
   const name = document.getElementById('user-name').value.trim() || '(미입력)';
@@ -2746,18 +2490,18 @@ async function saveLog(chInfo, accuracy, grade, ops, origWords){
     +String(kst.getUTCDate()).padStart(2,'0')+' '
     +String(kst.getUTCHours()).padStart(2,'0')+':'
     +String(kst.getUTCMinutes()).padStart(2,'0');
- 
+
   // ops 에서 단어별 오류 횟수만 경량 저장 { word, type('miss'|'sub'|'extra'), bw? }
   const errWords = (ops||[])
     .filter(o => o.t !== 'ok')
     .map(o => ({ t: o.t, aw: o.aw||'', bw: o.bw||'' }));
- 
+
   const entry = { time: dateStr, name, chapter: chInfo, accuracy, grade,
                   origWords: origWords||[], errWords };
- 
+
   // 항상 로컬 저장
   const logs = getLogs(); logs.push(entry); saveLogs(logs);
- 
+
   if(logMode === 'server'){
     // 서버엔 경량 버전 전송 (origWords 제외)
     const serverEntry = { time:dateStr, name, chapter:chInfo, accuracy, grade };
@@ -2767,7 +2511,7 @@ async function saveLog(chInfo, accuracy, grade, ops, origWords){
     document.getElementById('server-status').style.display = 'block';
   }
 }
- 
+
 /* ── 로그 테이블 렌더 ── */
 function gradeColor(g){
   if(g==='완벽') return {bg:'rgba(74,222,128,.18)',color:'#4ade80'};
@@ -2775,7 +2519,7 @@ function gradeColor(g){
   if(g==='보통') return {bg:'rgba(251,191,36,.18)',color:'#fbbf24'};
   return {bg:'rgba(248,113,113,.18)',color:'#f87171'};
 }
- 
+
 function renderLogTable(){
   const logs = getLogs();
   const wrap = document.getElementById('log-table-wrap');
@@ -2811,7 +2555,7 @@ function renderLogTable(){
       <tbody>${rows}</tbody>
     </table>`;
 }
- 
+
 /* ── CSV 내보내기 ── */
 function exportCSV(){
   const logs = getLogs();
@@ -2830,9 +2574,9 @@ function exportCSV(){
   document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
 }
- 
+
 /* ════════════ 로그 미리보기 (누적 오류 포함) ════════════ */
- 
+
 /**
  * 로그 idx 회차를 미리보기 모달로 표시
  * - 원본(origWords) + 그 회차 errWords로 ops 재구성
@@ -2842,18 +2586,18 @@ function replayLog(idx){
   const logs = getLogs();
   const entry = logs[idx];
   if(!entry){ alert('기록을 찾을 수 없습니다.'); return; }
- 
+
   // ── 1. ops 재구성 (origWords + errWords → lcsOps 재실행) ──
   const origWords = entry.origWords || [];
   if(!origWords.length){ alert('이 기록에는 원본 단어 데이터가 없습니다.\n(이전 버전 기록은 미리보기 불가)'); return; }
- 
+
   // errWords({t,aw,bw})로 녹음 텍스트(recWords)를 역산
   // miss → 원본에 있고 녹음에 없음, sub → 원본 aw 대신 bw, extra → 녹음에만 있음
   // 가장 정확한 방법: origWords 순서대로 traversal하여 recWords 재구성
   const recWords = [];
   let origPtr = 0;
   const errWords = entry.errWords || [];
- 
+
   // errWords를 원본 단어 순서 기반으로 정렬·매핑
   // miss/sub/extra를 origWords 위치에 맞춰 recWords 생성
   // origWords를 순회하며 errMap 조회
@@ -2869,7 +2613,7 @@ function replayLog(idx){
       if(pos !== -1){ errByOrig[pos] = e; origIdx2 = pos + 1; }
     }
   });
- 
+
   // recWords 재구성: origWords 순서 + extra 삽입
   // extra는 위치 정보가 없으므로 끝에 추가 (정확한 위치 복원 불가 — 미리보기용으로 충분)
   origWords.forEach((w, i) => {
@@ -2883,9 +2627,9 @@ function replayLog(idx){
     }
   });
   errWords.filter(e => e.t === 'extra').forEach(e => recWords.push(e.bw));
- 
+
   const ops = mergeOps(lcsOps(origWords, recWords));
- 
+
   // ── 2. 동일 이름+챕터 전체 기록에서 누적 오류 단어 집계 ──
   const sameGroup = logs.filter(l =>
     l.name === entry.name &&
@@ -2893,7 +2637,7 @@ function replayLog(idx){
     l.errWords && l.errWords.length
   );
   const totalSessions = sameGroup.length;
- 
+
   // word → 오류 발생 횟수
   const wordErrCount = {};
   sameGroup.forEach(l => {
@@ -2903,21 +2647,21 @@ function replayLog(idx){
       if(w && !seen.has(w)){ seen.add(w); wordErrCount[w] = (wordErrCount[w]||0) + 1; }
     });
   });
- 
+
   // ── 3. 미리보기 HTML 생성 ──
   const { wordList: baseOrigWords, wordSentIdx } = splitSentences(origWords.join(' '));
   const html = buildReplayPreviewHTML({
     entry, ops, origWords, wordSentIdx,
     wordErrCount, totalSessions, sessionNo: idx + 1, allSessionCount: logs.length
   });
- 
+
   // 로그 모달 닫기 → 미리보기 모달 열기
   document.getElementById('log-modal').classList.remove('open');
   document.getElementById('preview-a4-content').innerHTML = html;
   document.getElementById('preview-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
- 
+
 /**
  * 로그 기반 미리보기 HTML 생성
  * - 현재 회차의 원본/녹음 비교 (문장별)
@@ -2929,10 +2673,10 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
   const accuracy= entry.accuracy || 0;
   const grade   = entry.grade || '';
   const name    = entry.name || '';
- 
+
   // 등급 색상
   const gc = {완벽:'#4ade80',우수:'#60a5fa',보통:'#fbbf24',미흡:'#f87171'}[grade] || '#aaa';
- 
+
   // ── 문장별로 ops 분리 (buildPreviewHTML 과 동일 로직) ──
   const sentGroups = [];
   let curSent = -1, origPtr2 = 0;
@@ -2949,7 +2693,7 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
     if(sentGroups.length === 0) sentGroups.push({si:0, ops:[]});
     sentGroups[sentGroups.length-1].ops.push(op);
   });
- 
+
   function wordSpan(op, side){
     const w = side==='l' ? op.aw : op.bw;
     // 반복오류 여부: 원본 단어가 2회 이상 오류
@@ -2972,7 +2716,7 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
       }
     }
   }
- 
+
   let rowsHTML = '';
   sentGroups.forEach((sg, idx) => {
     const lWords = sg.ops.map(o => wordSpan(o,'l')).join(' ');
@@ -2993,14 +2737,14 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
         </div>
       </div>`;
   });
- 
+
   // ── 누적 오류 단어 섹션 ──
   let accHTML = '';
   if(totalSessions >= 2){
     const sorted = Object.entries(wordErrCount)
       .filter(([,cnt]) => cnt >= 1)
       .sort((a,b) => b[1]-a[1]);
- 
+
     if(sorted.length){
       const chips = sorted.map(([w, cnt]) => {
         const pct  = Math.round(cnt / totalSessions * 100);
@@ -3008,7 +2752,7 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
                    : cnt >= Math.ceil(totalSessions/2) ? 'freq2' : 'freq1';
         return `<span class="pv-acc-chip ${cls}">${esc(w)}<span class="pv-acc-cnt">${cnt}/${totalSessions}</span></span>`;
       }).join('');
- 
+
       accHTML = `
         <div class="pv-acc-section">
           <div class="pv-acc-title">
@@ -3022,11 +2766,11 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
         </div>`;
     }
   }
- 
+
   // ── 통계 ──
   let correct=0, missing=0, extra=0, sub=0;
   ops.forEach(o=>{ if(o.t==='ok')correct++; else if(o.t==='miss')missing++; else if(o.t==='extra')extra++; else sub++; });
- 
+
   return `
     <div style="background:#ffffff !important;color:#000 !important;color-scheme:light !important;min-height:100%;">
     <div class="pv-header">
@@ -3062,7 +2806,7 @@ function buildReplayPreviewHTML({ entry, ops, origWords, wordSentIdx, wordErrCou
     </div>
     </div>`;
 }
- 
+
 /* ── 버튼 이벤트 ── */
 document.getElementById('btn-log-view').addEventListener('click', function(){
   renderLogTable();
@@ -3083,7 +2827,7 @@ document.getElementById('log-modal-clear').addEventListener('click', function(){
 document.getElementById('log-modal').addEventListener('click', function(e){
   if(e.target===this){ this.classList.remove('open'); document.body.style.overflow=''; }
 });
- 
+
 /* ════════════ 오류 분석 ════════════ */
 function openAnalysisModal(){
   const logs = getLogs();
@@ -3101,7 +2845,7 @@ function openAnalysisModal(){
   document.getElementById('analysis-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
- 
+
 function runAnalysis(){
   const name    = document.getElementById('analysis-name').value;
   const chapter = document.getElementById('analysis-chapter').value;
@@ -3116,7 +2860,7 @@ function runAnalysis(){
       '<div class="log-empty">해당 조건의 기록이 없습니다</div>';
     return;
   }
- 
+
   // ── 회차별 요약 ──
   const sessionHtml = logs.map((l,i) => {
     const gc = gradeColor(l.grade);
@@ -3125,7 +2869,7 @@ function runAnalysis(){
       style="${best?'':'border-color:'+gc.color+';background:rgba(0,0,0,.1);color:'+gc.color+''}">
       ${i+1}회 ${l.time.split(' ')[1]||''} ${l.accuracy}%</span>`;
   }).join('');
- 
+
   // ── 원문 단어 목록 ──
   // 가장 긴 origWords 를 기준으로 사용 (없으면 챕터 텍스트에서 추출)
   let baseWords = [];
@@ -3134,7 +2878,7 @@ function runAnalysis(){
     const ch = CHAPTERS.find(c => chapter.includes(c.title) || chapter.includes(c.num));
     if(ch) baseWords = normWords(ch.text);
   }
- 
+
   // ── 단어별 오류 누적 카운트 ──
   // errMap: { word → { miss:n, sub:n, total:n, subWords:[...] } }
   const errMap = {};
@@ -3150,9 +2894,9 @@ function runAnalysis(){
       }
     });
   });
- 
+
   const totalSessions = logs.length;
- 
+
   // ── 원문 히트맵 ──
   const heatHtml = baseWords.map(w => {
     const e = errMap[w];
@@ -3165,13 +2909,13 @@ function runAnalysis(){
     const tip = cnt > 0 ? `${cnt}/${totalSessions}회 오류(${pct}%)` : '';
     return `<span class="hw ${cls}" ${tip?`data-tip="${tip}"`:''}>${esc(w)}</span>`;
   }).join(' ');
- 
+
   // ── 상위 오류 단어 ──
   const errList = Object.entries(errMap)
     .sort((a,b) => b[1].total - a[1].total)
     .slice(0, 10);
   const maxCnt = errList[0] ? errList[0][1].total : 1;
- 
+
   const errListHtml = errList.length ? errList.map(([w, e]) => {
     const pct = Math.round(e.total / totalSessions * 100);
     const barW = Math.round(e.total / maxCnt * 100);
@@ -3183,11 +2927,11 @@ function runAnalysis(){
       ${subTxt ? `<span class="err-word-sub">${esc(subTxt)}</span>` : ''}
     </div>`;
   }).join('') : '<div style="font-size:13px;color:var(--green);">✓ 오류 단어가 없습니다</div>';
- 
+
   // ── 평균 일치율 ──
   const avgAcc = Math.round(logs.reduce((s,l)=>s+l.accuracy,0) / logs.length);
   const best   = Math.max(...logs.map(l=>l.accuracy));
- 
+
   document.getElementById('analysis-result').innerHTML = `
     <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">
       <strong style="color:var(--text);">${esc(name)}</strong> ·
@@ -3196,13 +2940,13 @@ function runAnalysis(){
       평균 <strong style="color:var(--blue);">${avgAcc}%</strong> |
       최고 <strong style="color:var(--green);">${best}%</strong>
     </div>
- 
+
     <div class="analysis-section-title">🕐 회차별 결과</div>
     <div class="analysis-sessions">${sessionHtml}</div>
- 
+
     <div class="analysis-section-title">🔴 자주 틀리는 단어 (상위 10)</div>
     <div class="err-word-list">${errListHtml}</div>
- 
+
     <div class="analysis-section-title">📄 원문 오류 히트맵
       <span style="font-weight:400;text-transform:none;font-size:10px;margin-left:6px;">
         🟡 1회+ &nbsp; 🔴 절반이상 &nbsp; ■ 매회 오류
@@ -3211,7 +2955,7 @@ function runAnalysis(){
     <div class="heatmap-wrap">${heatHtml}</div>
   `;
 }
- 
+
 document.getElementById('log-modal-analysis').addEventListener('click', function(){
   document.getElementById('log-modal').classList.remove('open');
   openAnalysisModal();
@@ -3224,12 +2968,9 @@ document.getElementById('analysis-modal').addEventListener('click', function(e){
   if(e.target===this){ this.classList.remove('open'); document.body.style.overflow=''; }
 });
 document.getElementById('btn-analysis-run').addEventListener('click', runAnalysis);
- 
+
 renderChapters();
 </script>
- 
+
 </body>
 </html>
- 
-
-
